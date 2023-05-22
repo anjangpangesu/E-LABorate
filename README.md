@@ -18,7 +18,7 @@ However, during COVID-19 pandemic, the amount of laboratory test demand increase
 
 ### Project Schedule
 The following is a project schedule for making the e-LABorate application.
-
+https://github.com/anjangpangesu/E-LABorate/assets/63623255/a666c7d4-c891-4abc-b1f0-f9f6a701e63c
 
 ### Tools
 TBD
