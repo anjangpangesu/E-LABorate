@@ -1,18 +1,17 @@
 const express = require('express');
-const jwt = require('jsonwebtoken');
-const auth = require('./auth');
+const router = express.Router();
 const nodemailer = require('nodemailer');
 const admin = require('firebase-admin');
 
-const router = express.Router();
 const db = admin.firestore();
 
 // Konfigurasi Nodemailer
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: "sandbox.smtp.mailtrap.io",
+  port: 2525,
   auth: {
-    user: 'anjangpangestu312@gmail.com',
-    pass: 'ANJANG_23'
+    user: "431bdfa975217f",
+    pass: "6c6c2a666fe46f"
   }
 });
 
@@ -32,26 +31,29 @@ const sendEmail = async (email, subject, message) => {
 router.post('/', async (req, res) => {
   const { email } = req.body;
 
-  // Cek apakah email pengguna ada di Firestore
   try {
     const userDoc = await db.collection('users').doc(email).get();
     if (!userDoc.exists) {
       return res.status(404).send('User not found');
     }
 
-    // Buat token JWT yang akan dikirimkan ke email pengguna
-    const token = jwt.sign({ email: email }, auth.JWT_SECRET, { expiresIn: '1h' });
+    // Generate verification code
+    const verificationCode = Math.floor(100000 + Math.random() * 900000);
 
-    // Kirim email dengan link untuk mereset password
-    const resetPasswordLink = `http://localhost:8080/resetpassword?token=${token}`;
-    const emailSubject = 'Reset Password';
-    const emailMessage = `Click the following link to reset your password: ${resetPasswordLink}`;
+    // Save verification code to Firestore
+    await db.collection('users').doc(email).update({
+      verificationCode: verificationCode.toString()
+    });
+
+    // Send verification code via email
+    const emailSubject = 'Verification Code';
+    const emailMessage = `Your verification code is: ${verificationCode}`;
 
     await sendEmail(email, emailSubject, emailMessage);
 
     res.sendStatus(200);
   } catch (error) {
-    console.error('Error sending reset password email:', error);
+    console.error('Error sending verification code:', error);
     res.sendStatus(500);
   }
 });

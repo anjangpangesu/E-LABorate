@@ -1,18 +1,20 @@
 const express = require('express');
 const app = express();
-// const { myLogger } = require('./../log/logger');
 const signupRouter = require('./../routes/signup');
 const signinRouter = require('./../routes/signin');
-const resetRouter = require('./../routes/reset');
+const forgotpassRouter = require('../routes/forgotpass');
+const verifycodeRouter = require('./../routes/verifycode');
+const resetpassRouter = require('./../routes/resetpass');
 
 // Middleware untuk mengizinkan body request dalam format JSON
 app.use(express.json());
 
 // Routes
-// app.use(myLogger);
 app.use('/signup', signupRouter);
 app.use('/signin', signinRouter);
-app.use('/resetpassword', resetRouter);
+app.use('/forgot-password', forgotpassRouter);
+app.use('/verify-code', verifycodeRouter);
+app.use('/reset-password', resetpassRouter);
 
 // Mulai server
 app.listen(8080, () => {

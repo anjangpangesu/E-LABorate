@@ -16,6 +16,7 @@ const verifyPassword = async (password, hashedPassword) => {
 };
 
 module.exports = {
+  JWT_SECRET,
   generateToken,
   verifyPassword
 };
