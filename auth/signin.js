@@ -2,7 +2,7 @@ const express = require('express');
 const auth = require('./auth');
 const Joi = require('joi');
 const admin = require('firebase-admin');
-const userLog = require('./../log/logger');
+const userLog = require('../log/logger');
 
 const router = express.Router();
 const db = admin.firestore();
