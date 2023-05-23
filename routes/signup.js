@@ -31,7 +31,7 @@ const validateUserInput = (data) => {
 
 // Route untuk Sign Up
 router.post('/', async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, confirmPassword } = req.body;
 
   // Validasi input pengguna
   const { error } = validateUserInput(req.body);
