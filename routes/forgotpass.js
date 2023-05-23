@@ -18,7 +18,7 @@ const transporter = nodemailer.createTransport({
 // Fungsi helper untuk mengirim email
 const sendEmail = async (email, subject, message) => {
   const mailOptions = {
-    from: 'anjangpangestu312@gmail.com',
+    from: 'anjangpangestu2304@gmail.com',
     to: email,
     subject: subject,
     text: message
