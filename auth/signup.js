@@ -10,6 +10,11 @@ const db = admin.firestore();
 // Validasi input pengguna menggunakan Joi
 const validateUserInput = (data) => {
   const schema = Joi.object({
+    username: Joi.string()
+      .max(70)
+      .pattern(/^\S.*$/)
+      .message("Username should not start with a space")
+      .required(),
     email: Joi.string()
       .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
       .trim()
@@ -17,10 +22,10 @@ const validateUserInput = (data) => {
     password: Joi.string()
       .min(8)
       .pattern(/^\S*$/)
-      .message('Password should not contain spaces')
+      .message("Password should not contain spaces")
       .required(),
     confirmPassword: Joi.string()
-      .valid(Joi.ref('password'))
+      .valid(Joi.ref("password"))
       .trim()
       .required()
       .strict()
@@ -31,19 +36,24 @@ const validateUserInput = (data) => {
 
 // Route untuk Sign Up
 router.post('/', async (req, res) => {
-  const { email, password, confirmPassword } = req.body;
+  const { username, email, password } = req.body;
 
   // Validasi input pengguna
   const { error } = validateUserInput(req.body);
   if (error) {
-    return res.status(400).json({ error: error.details[0].message });
+    return res.status(400).json({
+      error: error.details[0].messag
+    });
   }
 
   try {
     // Cek apakah pengguna dengan email yang sama sudah terdaftar
-    const userSnapshot = await db.collection('users').doc(email).get();
-    if (userSnapshot.exists) {
-      return res.status(400).json({ error: 'Email already exists' });
+    const userSnapshot = await db.collection('users').where('email', '==', email).get();
+    if (!userSnapshot.empty) {
+      return res.status(400).json({
+        error: true,
+        message: "Email already exists"
+      });
     }
 
     // Hash password menggunakan bcrypt
@@ -52,16 +62,28 @@ router.post('/', async (req, res) => {
     // Mencatat pesan log menggunakan signupLogger
     userLog.info('SIGN UP', { email });
 
-    // Simpan data pengguna ke Firestore
+    // Generate ID baru dengan metode doc() dari Firestore
+    const newUserId = db.collection('users').doc().id;
+
+    // Simpan data pengguna ke Firestore dengan ID yang dihasilkan
     await db.collection('users').doc(email).set({
+      id: newUserId,
+      username: username,
       email: email,
       password: hashedPassword
     });
-
-    res.sendStatus(200);
+    
+    return res.status(200).json({
+      error: false,
+      message: 'User Created',
+      userId: newUserId,
+      username: username
+    });
   } catch (error) {
-    console.error('Error creating user:', error);
-    res.sendStatus(500);
+    return res.status(500).json({
+      error: true,
+      message: 'Failed to create user'
+    });
   }
 });
 

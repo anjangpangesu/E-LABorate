@@ -34,7 +34,10 @@ router.post('/', async (req, res) => {
   try {
     const userDoc = await db.collection('users').doc(email).get();
     if (!userDoc.exists) {
-      return res.status(404).send('User not found');
+      return res.status(404).json({
+        error: true,
+        message: "User not found"
+      });
     }
 
     // Generate verification code
@@ -51,10 +54,16 @@ router.post('/', async (req, res) => {
 
     await sendEmail(email, emailSubject, emailMessage);
 
-    res.sendStatus(200);
+    return res.status(200).json({
+      error: false,
+      message: "Verification code has been sent",
+      email: email
+    });
   } catch (error) {
-    console.error('Error sending verification code:', error);
-    res.sendStatus(500);
+    return res.status(500).json({
+      error: true,
+      message: "Failed to send verification code"
+    });
   }
 });
 

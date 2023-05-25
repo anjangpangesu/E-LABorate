@@ -12,21 +12,34 @@ router.post('/', async (req, res) => {
   try {
     const userDoc = await db.collection('users').doc(email).get();
     if (!userDoc.exists) {
-      return res.status(404).send('User not found');
+      return res.status(404).json({
+        error: true,
+        message: "User not found"
+      });
     }
 
     const userData = userDoc.data();
     if (userData.verificationCode !== verificationCode) {
-      return res.status(401).send('Invalid verification code');
+      return res.status(401).json({
+        error: true,
+        message: "Invalid verification code"
+      });
     }
 
     // Generate token for password reset
     const token = jwt.sign({ email: email }, JWT_SECRET, { expiresIn: '1h' });
 
-    res.json({ token });
+    return res.status(200).json({
+      error: false,
+      message: "Token generated",
+      email: userData.email,
+      token
+    });
   } catch (error) {
-    console.error('Error verifying code:', error);
-    res.sendStatus(500);
+    return res.status(500).json({
+      error: true,
+      message: "Error verifying code"
+    });
   }
 });
 
