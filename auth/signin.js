@@ -55,6 +55,10 @@ router.post('/', async (req, res) => {
 
     // Buat token JWT
     const token = auth.generateToken(userData.email);
+    // Simpan token ke dalam koleksi pengguna
+    await db.collection('users').doc(email).update({
+      token: token
+    });
 
     // Mencatat pesan log menggunakan signinLogger
     userLog.info('SIGN IN', { email });
