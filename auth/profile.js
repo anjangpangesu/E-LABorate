@@ -8,25 +8,41 @@ const db = admin.firestore();
 // Route untuk mendapatkan data profil pengguna
 router.get('/:id', async (req, res) => {
   try {
-    // Ambil data pengguna dari Firestore berdasarkan ID pengguna (sebagai contoh, menggunakan ID dari token JWT yang dikirim di header)
     const userId = req.params.id;
-    const userDoc = await db.collection('users').doc(userId).get(); // userId ga bisa diakses langsung karena nama document ditulis berdasarkan email
 
-    if (!userDoc.exists) {
+    // Ambil email pengguna berdasarkan ID pengguna
+    const userQuery = await db.collection('users').where('id', '==', userId).get();
+
+    if (userQuery.empty) {
       return res.status(404).json({
         error: true,
         message: 'User not found',
       });
     }
 
-    const userData = userDoc.data();
+    const userDoc = userQuery.docs[0]; // Mengambil document pertama yang ditemukan
+    const userEmail = userDoc.data().email;
+
+    // Ambil data pengguna dari Firestore berdasarkan email
+    const userDataQuery = await db.collection('users').where('email', '==', userEmail).get();
+
+    if (userDataQuery.empty) {
+      return res.status(404).json({
+        error: true,
+        message: 'User not found',
+      });
+    }
+
+    const userDataDoc = userDataQuery.docs[0]; // Mengambil document pertama yang ditemukan
+    const userData = userDataDoc.data();
 
     return res.status(200).json({
       error: false,
       message: 'User profile retrieved',
       userId: userData.id,
-      email: userData.email,
       username: userData.username,
+      email: userData.email,
+      token: userData.token,
       phone: userData.phone,
       address: userData.address,
     });
@@ -39,21 +55,33 @@ router.get('/:id', async (req, res) => {
 });
 
 // Route untuk menambahkan nomor telepon dan alamat rumah pengguna
-router.post('/', async (req, res) => {
+router.post('/:id', async (req, res) => {
   const { phone, address } = req.body;
 
   try {
-    // Ambil ID pengguna dari token JWT (sebagai contoh, menggunakan ID dari token JWT yang dikirim di header)
-    const userId = req.user.id; // Anda perlu mengatur middleware untuk mengekstrak informasi pengguna dari token JWT yang dikirim di header
+    const userId = req.params.id;
+
+    // Ambil email pengguna berdasarkan ID pengguna
+    const userQuery = await db.collection('users').where('id', '==', userId).get();
+
+    if (userQuery.empty) {
+      return res.status(404).json({
+        error: true,
+        message: 'User not found',
+      });
+    }
+
+    const userDoc = userQuery.docs[0]; // Mengambil document pertama yang ditemukan
+    const userEmail = userDoc.data().email;
 
     // Update dokumen pengguna dengan nomor telepon dan alamat rumah yang baru
-    await db.collection('users').doc(userId).update({
+    await db.collection('users').doc(userEmail).update({
       phone: phone,
       address: address,
     });
 
     // Mencatat pesan log menggunakan userLog
-    userLog.info('User profile updated', { userId });
+    userLog.info('User profile updated', { email: userEmail });
 
     return res.status(200).json({
       error: false,
@@ -61,7 +89,7 @@ router.post('/', async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      error: true,
+      error: error,
       message: 'Error updating user profile',
     });
   }
