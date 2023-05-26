@@ -2,18 +2,18 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 
-// Konfigurasi JWT
+// JWT Configuration
 const JWT_SECRET = crypto.randomBytes(64).toString('hex');
 const revokedTokens = new Set();
 
-// Fungsi untuk membuat token JWT
+// Function to create a JWT token
 const generateToken = (email) => {
   const token = jwt.sign({ email: email }, JWT_SECRET);
-  revokedTokens.delete(token); // Remove token from revokedTokens if present
+  revokedTokens.delete(token); // Remove tokens from revokedTokens if found
   return token;
 };
 
-// Fungsi untuk memverifikasi token JWT
+// Function to verify JWT token
 const verifyToken = (token) => {
   return new Promise((resolve, reject) => {
     jwt.verify(token, JWT_SECRET, (err, decodedToken) => {
@@ -26,21 +26,21 @@ const verifyToken = (token) => {
   });
 };
 
-// Fungsi untuk memverifikasi password
+// Function to verify password
 const verifyPassword = async (password, hashedPassword) => {
   return bcrypt.compare(password, hashedPassword);
 };
 
-// Fungsi untuk mencatat token yang direvoke
+// Function to record deleted tokens
 const revokeToken = async (token) => {
   // Menghapus token dari database
   await deleteTokenFromDatabase(token);
 
-  // Mencatat token yang direvoke
+  // Record deleted tokens
   revokedTokens.add(token);
 };
 
-// Fungsi untuk menghapus token dari database
+// Function to delete tokens from the database
 const deleteTokenFromDatabase = async (token) => {
   try {
     const userQuery = db.collection('users').where('token', '==', token);
@@ -56,7 +56,6 @@ const deleteTokenFromDatabase = async (token) => {
       await batch.commit();
     }
   } catch (error) {
-    // Tangani kesalahan jika terjadi
     return res.status(500).json({
       error: error,
       message: "Error deleting token"
@@ -64,13 +63,13 @@ const deleteTokenFromDatabase = async (token) => {
   }
 };
 
-// Fungsi untuk memeriksa apakah token telah direvoke
+// Function to check if the token has been deleted
 const isTokenRevoked = (token) => {
   return revokedTokens.has(token);
 };
 
-// Middleware untuk mengekstrak informasi pengguna dari token JWT
-const extractUserFromToken = async (req, res, next) => {
+// Middleware to extract user information from JWT token
+const extractUserFromToken = async (req, res) => {
   const token = req.header('Authorization');
 
   if (token) {
@@ -78,7 +77,7 @@ const extractUserFromToken = async (req, res, next) => {
       const decodedToken = jwt.verify(token, JWT_SECRET);
       req.user = decodedToken;
     } catch (error) {
-      // Jika token tidak valid, lakukan sign out paksa dan hapus token dari database
+      // If the token is invalid, force sign out the user and remove the token from the database.
       await auth.revokeToken(token);
       return res.status(500).json({
         error: error,

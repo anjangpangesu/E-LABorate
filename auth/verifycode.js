@@ -5,7 +5,7 @@ const admin = require('firebase-admin');
 const db = admin.firestore();
 const jwt = require('jsonwebtoken');
 
-// Route untuk Verify Code
+// Route to Verify Code
 router.post('/', async (req, res) => {
   const { email, verificationCode } = req.body;
 
@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
     const userDoc = await db.collection('users').doc(email).get();
     if (!userDoc.exists) {
       return res.status(404).json({
-        error: true,
+        error: error,
         message: "User not found"
       });
     }
@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
     const userData = userDoc.data();
     if (userData.verificationCode !== verificationCode) {
       return res.status(401).json({
-        error: true,
+        error: error,
         message: "Invalid verification code"
       });
     }
@@ -37,7 +37,7 @@ router.post('/', async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      error: true,
+      error: error,
       message: "Error verifying code"
     });
   }

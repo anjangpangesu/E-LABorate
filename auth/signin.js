@@ -7,7 +7,7 @@ const userLog = require('../log/logger');
 const router = express.Router();
 const db = admin.firestore();
 
-// Validasi input pengguna menggunakan Joi
+// Validate user input using Joi
 const validateUserInput = (data) => {
   const schema = Joi.object({
     email: Joi.string()
@@ -20,7 +20,7 @@ const validateUserInput = (data) => {
   return schema.validate(data);
 };
 
-// Route untuk Sign In
+// Route to Sign In
 router.post('/', async (req, res) => {
   const { email, password } = req.body;
 
@@ -32,35 +32,36 @@ router.post('/', async (req, res) => {
     });
   }
 
-  // Ambil data pengguna dari Firestore
+  // Retrieve user data from Firestore
   try {
     const userDoc = await db.collection('users').doc(email).get();
     if (!userDoc.exists) {
       return res.status(401).json({
-        error: true,
+        error: error,
         message: "Invalid email or password"
       });
     }
 
     const userData = userDoc.data();
 
-    // Verifikasi password menggunakan bcrypt
+    // Verify passwords using bcrypt
     const passwordMatch = await auth.verifyPassword(password, userData.password);
     if (!passwordMatch) {
       return res.status(401).json({
-        error: true,
+        error: error,
         message: "Invalid email or password"
       });
     }
 
-    // Buat token JWT
+    // Create JWT tokens
     const token = auth.generateToken(userData.email);
-    // Simpan token ke dalam koleksi pengguna
+
+    // Save the token into the user's collection
     await db.collection('users').doc(email).update({
       token: token
     });
 
-    // Mencatat pesan log menggunakan signinLogger
+    // Logging log messages to userLog
     userLog.info('SIGN IN', { email });
 
     return res.status(200).json({
@@ -73,7 +74,7 @@ router.post('/', async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      error: true,
+      error: error,
       message: "Error Signing In"
     });
   }

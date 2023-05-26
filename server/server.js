@@ -8,7 +8,7 @@ const verifycodeRouter = require('./../auth/verifycode');
 const resetpassRouter = require('./../auth/resetpass');
 const profileRouter = require('./../auth/profile');
 
-// Middleware untuk mengizinkan body request dalam format JSON
+// Middleware to allow request body in JSON format
 app.use(express.json());
 
 // Routes
@@ -20,7 +20,7 @@ app.use('/verify-code', verifycodeRouter);
 app.use('/reset-password', resetpassRouter);
 app.use('/profile', profileRouter);
 
-// Mulai server
+// Server startup
 app.listen(8080, () => {
   console.log('Server started on port http://localhost:8080');
 });

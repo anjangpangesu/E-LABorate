@@ -2,6 +2,7 @@ const winston = require('winston');
 const { format } = winston;
 const { timestamp } = format;
 
+// Create a new format for user logs
 const userFormat = format.printf(info => {
   const customTimestamp = info.timestamp;
   const level = info.level.toUpperCase();
@@ -11,6 +12,7 @@ const userFormat = format.printf(info => {
   return `${customTimestamp} - ${level} - ${email} - ${message}`;
 });
 
+// Creating userLog
 const userLog = winston.createLogger({
   format: format.combine(
     timestamp({

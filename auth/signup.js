@@ -7,7 +7,7 @@ const userLog = require('./../log/logger');
 const router = express.Router();
 const db = admin.firestore();
 
-// Validasi input pengguna menggunakan Joi
+// Validate user input using Joi
 const validateUserInput = (data) => {
   const schema = Joi.object({
     username: Joi.string()
@@ -34,38 +34,38 @@ const validateUserInput = (data) => {
   return schema.validate(data);
 };
 
-// Route untuk Sign Up
+// Route to Sign Up
 router.post('/', async (req, res) => {
   const { username, email, password } = req.body;
 
-  // Validasi input pengguna
+  // Validate user input
   const { error } = validateUserInput(req.body);
   if (error) {
     return res.status(400).json({
-      error: error.details[0].messag
+      error: error.details[0].message
     });
   }
 
   try {
-    // Cek apakah pengguna dengan email yang sama sudah terdaftar
+    // Check if users with the same email are already registered
     const userSnapshot = await db.collection('users').where('email', '==', email).get();
     if (!userSnapshot.empty) {
       return res.status(400).json({
-        error: true,
+        error: error,
         message: "Email already exists"
       });
     }
 
-    // Hash password menggunakan bcrypt
+    // Hash password using bcrypt
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Mencatat pesan log menggunakan signupLogger
+    // Logging log messages to userLog
     userLog.info('SIGN UP', { email });
 
-    // Generate ID baru dengan metode doc() dari Firestore
+    // Generate new ID
     const newUserId = db.collection('users').doc().id;
 
-    // Simpan data pengguna ke Firestore dengan ID yang dihasilkan
+    // Save user data to Firestore with generated IDs
     await db.collection('users').doc(email).set({
       id: newUserId,
       username: username,
@@ -81,7 +81,7 @@ router.post('/', async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      error: true,
+      error: error,
       message: 'Failed to create user'
     });
   }

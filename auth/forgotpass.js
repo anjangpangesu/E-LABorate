@@ -61,7 +61,7 @@ router.post('/', async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      error: true,
+      error: error,
       message: "Failed to send verification code"
     });
   }

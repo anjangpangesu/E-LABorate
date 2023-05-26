@@ -6,15 +6,15 @@ const userLog = require('../log/logger');
 const router = express.Router();
 const db = admin.firestore();
 
-// Route untuk Sign Out
+// Route to Sign Out
 router.post('/', async (req, res) => {
   const { token } = req.body;
 
   try {
-    // Verifikasi token JWT
+    // JWT token verification
     const decodedToken = await auth.verifyToken(token);
 
-    // Ambil data pengguna dari Firestore berdasarkan email yang terkandung dalam token
+    // Retrieve user data from Firestore based on the email contained in the token
     const userDoc = await db.collection('users').doc(decodedToken.email).get();
     if (!userDoc.exists) {
       return res.status(404).json({
@@ -23,15 +23,15 @@ router.post('/', async (req, res) => {
       });
     }
 
-    // Mencatat pesan log menggunakan signoutLogger
+    // Logging log messages to userLog
     userLog.info('SIGN OUT', { email: decodedToken.email });
 
-    // Menghapus token dari dokumen pengguna di Firestore
+    // Removing tokens from user documents in Firestore
     await userDoc.ref.update({
       token: admin.firestore.FieldValue.delete()
     });
 
-    // Merevoke token
+    // Removing the token
     auth.revokeToken(token);
     const tokenStat = auth.isTokenRevoked(token);
 
