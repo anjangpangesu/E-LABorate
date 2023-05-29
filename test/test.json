@@ -1,0 +1,38 @@
+// Sign Up (POST)
+// https://backend-dot-e-laborate-project.et.r.appspot.com/signup
+{
+    "username": "",
+    "email": "",
+    "password": "",
+    "confirmPassword": ""
+}
+
+// Sign In (POST)
+// https://backend-dot-e-laborate-project.et.r.appspot.com/signin
+{
+    "email": "",
+    "password": ""
+}
+
+
+// Sign Out (POST)
+// https://backend-dot-e-laborate-project.et.r.appspot.com/signout
+{
+    "token": ""
+}
+
+
+// Reset Password (POST)
+// 
+
+
+// Profile (GET)
+// https://backend-dot-e-laborate-project.et.r.appspot.com/profile/{id}
+
+
+// Profile (POST)
+// https://backend-dot-e-laborate-project.et.r.appspot.com/profile/{id}
+{
+    "phone": "",
+    "address": ""
+}
