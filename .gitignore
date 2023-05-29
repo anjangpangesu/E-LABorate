@@ -1,0 +1,5 @@
+# exclude the service account file
+serviceAccountKey.json
+
+# exclude the .vscode folder
+/.vscode/
