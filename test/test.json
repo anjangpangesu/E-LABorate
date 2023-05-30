@@ -1,3 +1,6 @@
+Local testing: http://localhost:8080/
+Online testing: https://backend-dot-e-laborate-project.et.r.appspot.com/
+
 // Sign Up (POST)
 // https://backend-dot-e-laborate-project.et.r.appspot.com/signup
 {
@@ -36,3 +39,7 @@
     "phone": "",
     "address": ""
 }
+
+
+// Home (GET) --->>> (not deployed yet)
+// https://backend-dot-e-laborate-project.et.r.appspot.com/{id}
