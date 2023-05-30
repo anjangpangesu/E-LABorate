@@ -7,6 +7,13 @@ const userLog = require('../log/logger');
 const router = express.Router();
 const db = admin.firestore();
 
+router.get('/', (res) => {
+  return res.status(200).json({
+    error: false,
+    message: 'Test redirect'
+  });
+});
+
 // Validate user input using Joi
 const validateUserInput = (data) => {
   const schema = Joi.object({

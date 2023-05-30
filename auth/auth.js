@@ -69,24 +69,39 @@ const isTokenRevoked = (token) => {
 };
 
 // Middleware to extract user information from JWT token
-const extractUserFromToken = async (req, res) => {
-  const token = req.header('Authorization');
+const extractUserFromToken = async (req, res, next, token) => {
+  const currentUrl = req.originalUrl;
+
+  // Check if the user is already on the sign in page
+  if (currentUrl === '/signin') {
+    return next();
+  }
 
   if (token) {
     try {
-      const decodedToken = jwt.verify(token, JWT_SECRET);
+      const decodedToken = await verifyToken(token); // Use the verifyToken function from auth.js
       req.user = decodedToken;
+      next();
     } catch (error) {
-      // If the token is invalid, force sign out the user and remove the token from the database.
-      await auth.revokeToken(token);
+      await revokeToken(token);
       return res.status(500).json({
         error: error,
         message: "Invalid token",
         tokenRevoked: isTokenRevoked
       });
     }
+  } else {
+    // Display an error message if the user does not have a token when visiting pages other than sign in.
+    if (currentUrl !== '/signin') {
+      return res.status(401).json({
+        error: true,
+        message: 'User unauthorized. Token required'
+      });
+    }
+    next();
   }
 };
+
 
 module.exports = {
   JWT_SECRET,
