@@ -92,8 +92,8 @@ router.get('/profile/:id', async (req, res) => {
 });
 
 // Route to add users' phone numbers and addresses
-router.post('/profile/:id', async (req, res) => {
-  const { phone, address } = req.body;
+router.post('/profile/edit=:id', async (req, res) => {
+  const { username, phone, address } = req.body;
   const userId = req.params.id;
   const result = await getUserData(userId);
 
@@ -104,6 +104,7 @@ router.post('/profile/:id', async (req, res) => {
   try {
     // Update user documents with newly added phone numbers and addresses
     await db.collection('users').doc(result.userData.email).update({
+      username: username,
       phone: phone,
       address: address,
     });
@@ -115,6 +116,7 @@ router.post('/profile/:id', async (req, res) => {
       error: false,
       message: 'User profile updated successfully',
       id: userId,
+      username: username,
       email: result.userData.email,
       phone: phone,
       address: address,

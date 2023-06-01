@@ -7,6 +7,7 @@ const signoutRouter = require('./../auth/signout');
 const forgotpassRouter = require('../auth/forgotpass');
 const verifycodeRouter = require('./../auth/verifycode');
 const resetpassRouter = require('./../auth/resetpass');
+const diagnoseRouter = require('./../diagnose/diagnose');
 
 // Middleware to allow request body in JSON format
 app.use(express.json());
@@ -19,6 +20,7 @@ app.use('/signout', signoutRouter);
 app.use('/forgot-password', forgotpassRouter);
 app.use('/verify-code', verifycodeRouter);
 app.use('/reset-password', resetpassRouter);
+app.use('/diagnose', diagnoseRouter);
 
 // Server startup
 app.listen(8080, () => {
