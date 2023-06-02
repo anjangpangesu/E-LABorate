@@ -1,0 +1,130 @@
+Local testing: http://localhost:8080/
+Online testing: https://backend-dot-e-laborate-project.et.r.appspot.com/
+
+------------------------------------------------------------------------
+
+Sign Up (POST)
+Endpoint: /signup
+{
+    "username": "",
+    "email": "",
+    "password": "",
+    "confirmPassword": ""
+}
+
+
+Sign In (POST)
+Endpoint: /signin
+{
+    "email": "",
+    "password": ""
+}
+
+
+Sign Out (POST)
+Endpoint: /signout
+{
+    "token": ""
+}
+
+
+Reset Password (POST)
+Endpoint:
+
+
+Home (GET)
+Endpoint: /{userId}
+
+
+Profile (GET)
+Endpoint: /profile/{userId}
+
+
+Profile (POST)
+Endpoint: /profile/edit={userId}
+{
+    "phone": "",
+    "address": ""
+}
+
+
+Adding Doctors (POST) --> Private API
+Endpoint: /add-doctor
+Dummy:
+{
+  "name": "Dr. Roger William",
+  "age": 32,
+  "gender": "Male",
+  "specialist": "Neurology",
+  "work_place": ["Hospital AB", "Clinic Y"],
+  "experiences": 12
+}
+
+
+Doctors List (GET)
+Endpoint: /doctors/list
+
+
+Diagnostic Form (POST)
+Endpoint: /diagnose/form
+Dummy:
+{
+  "age": 99,
+  "sex": 0,
+  "rbc": {
+    "value": 4.5,
+    "units": "10¹² cells/L"
+  },
+  "hgb": {
+    "value": 12.3,
+    "units": "g/dl"
+  },
+  "hct": {
+    "value": 36.7,
+    "units": "%"
+  },
+  "mcv": {
+    "value": 89.5,
+    "units": "fL"
+  },
+  "mch": {
+    "value": 29.8,
+    "units": "pg"
+  },
+  "mchc": {
+    "value": 33.2,
+    "units": "g/dL"
+  },
+  "rdw_cv": {
+    "value": 12.5,
+    "units": "%"
+  },
+  "wbc": {
+    "value": 7.2,
+    "units": "10³ cells/cmm"
+  },
+  "neu": {
+    "value": 55.0,
+    "units": "%"
+  },
+  "lym": {
+    "value": 35.0,
+    "units": "%"
+  },
+  "mo": {
+    "value": 7.0,
+    "units": "%"
+  },
+  "eos": {
+    "value": 2.5,
+    "units": "%"
+  },
+  "ba": {
+    "value": 0.5,
+    "units": "%"
+  }
+}
+
+
+Diagnostic Results (GET)
+Endpoint: /diagnose/results={diagnosisId}
