@@ -3,3 +3,6 @@ serviceAccountKey.json
 
 # exclude the .vscode folder
 /.vscode/
+
+# exclude the env folder
+.env
