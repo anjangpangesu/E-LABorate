@@ -15,7 +15,7 @@ router.post('/', async (req, res) => {
     const decodedToken = await auth.verifyToken(token);
     
     // Retrieve user data from Firestore based on the email contained in the token
-    const userQuery = await db.collection('users').where('id', '==', decodedToken.userId).get();
+    const userQuery = await db.collection('users').where('userId', '==', decodedToken.userId).get();
     if (userQuery.empty) {
       return res.status(404).json({
         error: true,

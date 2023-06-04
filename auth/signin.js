@@ -43,7 +43,7 @@ router.post('/', async (req, res) => {
     }
 
     const userData = userDoc.docs[0].data();
-    const userId = userData.id;
+    const userId = userData.userId;
     const username = userData.username;
 
     // Verify passwords using bcrypt

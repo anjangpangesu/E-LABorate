@@ -67,7 +67,7 @@ router.post('/', async (req, res) => {
 
     // Save user data to Firestore with generated IDs
     await db.collection('users').doc(userId).set({
-      id: userId,
+      userId: userId,
       username: username,
       email: email,
       password: hashedPassword

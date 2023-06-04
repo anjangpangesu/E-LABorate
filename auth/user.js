@@ -22,8 +22,7 @@ const getUserData = async (userId) => {
       };
     }
 
-    const userDoc = userQuery.docs[0]; // Retrieving the first document found
-    const userData = userDoc.data();
+    const userData = userQuery.data();
 
     // Check if user is authenticated (has token)
     if (!userData.token) {
@@ -37,7 +36,7 @@ const getUserData = async (userId) => {
       error: false,
       message: 'User profile retrieved',
       userData: {
-        id: userData.id,
+        userId: userData.userId,
         username: userData.username,
         email: userData.email,
         phone: userData.phone,
@@ -47,7 +46,7 @@ const getUserData = async (userId) => {
     };
   } catch (error) {
     return {
-      error: true,
+      error: error,
       message: 'Error retrieving user profile',
     };
   }
@@ -103,7 +102,7 @@ router.post('/profile/edit=:id', async (req, res) => {
     return res.status(200).json({
       error: false,
       message: 'User profile updated successfully',
-      id: userId,
+      userId: userId,
       username: username,
       email: email,
       phone: phone,

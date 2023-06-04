@@ -9,8 +9,8 @@ const JWT_SECRET = process.env.SECRET_KEY;
 const revokedTokens = new Set();
 
 // Function to create a JWT token
-const generateToken = (id) => {
-  const token = jwt.sign({ userId: id }, JWT_SECRET);
+const generateToken = (userId) => {
+  const token = jwt.sign({ userId: userId }, JWT_SECRET);
   revokedTokens.delete(token); // Remove tokens from revokedTokens if found
   return token;
 };

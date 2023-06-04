@@ -5,7 +5,7 @@ const router = express.Router();
 const db = admin.firestore();
 
 // Route to Get All Doctors
-router.get('/list', async (req, res) => {
+router.get('/:id/doctor-list', async (req, res) => {
   try {
     // Get all doctors from Firestore
     const doctorsSnapshot = await db.collection('doctors').get();
