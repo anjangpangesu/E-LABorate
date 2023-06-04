@@ -1,11 +1,11 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const crypto = require('crypto');
 const admin = require('firebase-admin');
+require('dotenv').config();
 const db = admin.firestore();
 
 // JWT Configuration
-const JWT_SECRET = crypto.randomBytes(64).toString('hex');
+const JWT_SECRET = process.env.SECRET_KEY;
 const revokedTokens = new Set();
 
 // Function to create a JWT token
