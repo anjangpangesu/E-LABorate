@@ -13,18 +13,25 @@ router.post('/', async (req, res) => {
   try {
     // JWT token verification
     const decodedToken = await auth.verifyToken(token);
-
+    
     // Retrieve user data from Firestore based on the email contained in the token
-    const userDoc = await db.collection('users').doc(decodedToken.email).get();
-    if (!userDoc.exists) {
+    const userQuery = await db.collection('users').where('id', '==', decodedToken.userId).get();
+    if (userQuery.empty) {
       return res.status(404).json({
         error: true,
         message: "User not found"
       });
     }
+    
+    const userDoc = userQuery.docs[0]; // Retrieving the first document found
+    const userData = userDoc.data();
+    const username = userData.username;
+    const email = userData.email;
+    const phone = userData.phone;
+    const address = userData.address;
 
     // Logging log messages to userLog
-    userLog.info('SIGN OUT', { email: decodedToken.email });
+    userLog.info('SIGNED OUT', { userId: decodedToken.userId, username, email, phone, address });
 
     // Removing tokens from user documents in Firestore
     await userDoc.ref.update({
@@ -32,13 +39,17 @@ router.post('/', async (req, res) => {
     });
 
     // Removing the token
-    auth.revokeToken(token);
+    await auth.revokeToken(token);
     const tokenStat = auth.isTokenRevoked(token);
 
     return res.status(200).json({
       error: false,
       message: "User Signed Out",
-      email: decodedToken.email,
+      userId: decodedToken.userId,
+      username: username,
+      email: email,
+      phone: phone,
+      address: address,
       tokenRevoked: tokenStat
     });
   } catch (error) {

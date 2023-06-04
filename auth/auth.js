@@ -1,14 +1,16 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
+const admin = require('firebase-admin');
+const db = admin.firestore();
 
 // JWT Configuration
 const JWT_SECRET = crypto.randomBytes(64).toString('hex');
 const revokedTokens = new Set();
 
 // Function to create a JWT token
-const generateToken = (email) => {
-  const token = jwt.sign({ email: email }, JWT_SECRET);
+const generateToken = (id) => {
+  const token = jwt.sign({ userId: id }, JWT_SECRET);
   revokedTokens.delete(token); // Remove tokens from revokedTokens if found
   return token;
 };
@@ -56,10 +58,7 @@ const deleteTokenFromDatabase = async (token) => {
       await batch.commit();
     }
   } catch (error) {
-    return res.status(500).json({
-      error: error,
-      message: "Error deleting token"
-    });
+    throw new Error("Error deleting token from database");
   }
 };
 

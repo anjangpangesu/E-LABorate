@@ -7,13 +7,6 @@ const userLog = require('../log/logger');
 const router = express.Router();
 const db = admin.firestore();
 
-router.get('/', (res) => {
-  return res.status(200).json({
-    error: false,
-    message: 'Test redirect'
-  });
-});
-
 // Validate user input using Joi
 const validateUserInput = (data) => {
   const schema = Joi.object({
@@ -41,15 +34,17 @@ router.post('/', async (req, res) => {
 
   // Retrieve user data from Firestore
   try {
-    const userDoc = await db.collection('users').doc(email).get();
-    if (!userDoc.exists) {
+    const userDoc = await db.collection('users').where('email', '==', email).get();
+    if (userDoc.empty) {
       return res.status(401).json({
         error: error,
         message: "Invalid email or password"
       });
     }
 
-    const userData = userDoc.data();
+    const userData = userDoc.docs[0].data();
+    const userId = userData.id;
+    const username = userData.username;
 
     // Verify passwords using bcrypt
     const passwordMatch = await auth.verifyPassword(password, userData.password);
@@ -61,22 +56,24 @@ router.post('/', async (req, res) => {
     }
 
     // Create JWT tokens
-    const token = auth.generateToken(userData.email);
+    const token = auth.generateToken(userId);
 
     // Save the token into the user's collection
-    await db.collection('users').doc(email).update({
+    await db.collection('users').doc(userId).update({
       token: token
     });
 
     // Logging log messages to userLog
-    userLog.info('SIGN IN', { email });
+    userLog.info('SIGNED IN', { userId, username, email, phone: userData.phone, address: userData.address });
 
     return res.status(200).json({
       error: false,
       message: "User Signed In",
-      userId: userData.id,
-      email: userData.email,
-      username: userData.username,
+      userId: userId,
+      email: email,
+      username: username,
+      phone: userData.phone,
+      address: userData.address,
       token
     });
   } catch (error) {

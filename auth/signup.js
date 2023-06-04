@@ -59,15 +59,15 @@ router.post('/', async (req, res) => {
     // Hash password using bcrypt
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Logging log messages to userLog
-    userLog.info('SIGN UP', { email });
-
     // Generate new ID
-    const newUserId = db.collection('users').doc().id;
+    const userId = db.collection('users').doc().id;
+    
+    // Logging log messages to userLog
+    userLog.info('SIGNED UP', { userId, username, email });
 
     // Save user data to Firestore with generated IDs
-    await db.collection('users').doc(email).set({
-      id: newUserId,
+    await db.collection('users').doc(userId).set({
+      id: userId,
       username: username,
       email: email,
       password: hashedPassword
@@ -76,7 +76,7 @@ router.post('/', async (req, res) => {
     return res.status(200).json({
       error: false,
       message: 'User Created',
-      userId: newUserId,
+      userId: userId,
       username: username
     });
   } catch (error) {

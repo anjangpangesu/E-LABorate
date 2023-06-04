@@ -6,10 +6,14 @@ const { timestamp } = format;
 const userFormat = format.printf(info => {
   const customTimestamp = info.timestamp;
   const level = info.level.toUpperCase();
+  const userId = info.userId;
+  const username = info.username;
   const email = info.email;
+  const phone = info.phone;
+  const address = info.address;
   const message = info.message;
 
-  return `${customTimestamp} - ${level} - ${email} - ${message}`;
+  return `${customTimestamp} - ${level} - ${message} - ${userId} - ${username} - ${email} - ${phone} - ${address}`;
 });
 
 // Creating userLog
