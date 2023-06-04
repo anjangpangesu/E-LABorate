@@ -66,7 +66,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Route to get user profile data based on ID for profile endpoint
-router.get('/profile/:id', async (req, res) => {
+router.get('/:id/profile', async (req, res) => {
   const userId = req.params.id;
   const result = await getUserData(userId);
 
@@ -78,7 +78,7 @@ router.get('/profile/:id', async (req, res) => {
 });
 
 // Route to add users' phone numbers and addresses
-router.post('/profile/edit=:id', async (req, res) => {
+router.post('/:id/profile/edit', async (req, res) => {
   const { username, email, phone, address } = req.body;
   const userId = req.params.id;
   const result = await getUserData(userId);

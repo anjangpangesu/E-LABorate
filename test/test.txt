@@ -37,94 +37,102 @@ Endpoint: /{userId}
 
 
 Profile (GET)
-Endpoint: /profile/{userId}
+Endpoint: /{userId}/profile
 
 
 Profile (POST)
-Endpoint: /profile/edit={userId}
+Endpoint: /{userId}/profile/edit
 {
+    "username": "",
+    "email": "",
     "phone": "",
     "address": ""
 }
 
 
 Adding Doctors (POST) --> Private API
-Endpoint: /add-doctor
-Dummy:
+Endpoint: /private/{privateKey}/add-doctor
 {
-  "name": "Dr. Roger William",
-  "age": 32,
-  "gender": "Male",
-  "specialist": "Neurology",
-  "work_place": ["Hospital AB", "Clinic Y"],
-  "experiences": 12
+  "name": "",
+  "age": ,
+  "gender": "",
+  "specialty": "",
+  "work_place": ["", ""],
+  "experiences": 
 }
 
 
-Doctors List (GET)
-Endpoint: /doctors/list
+Doctor List (GET)
+Endpoint: /{userId}/doctors-list
 
 
-Diagnostic Form (POST)
-Endpoint: /diagnose/form
-Dummy:
+Diagnostic Form (POST)  -->  On Progress
+Endpoint: /{userId}/diagnose
 {
-  "age": 99,
-  "sex": 0,
+  "age": ,
+  "sex": ,
   "rbc": {
-    "value": 4.5,
+    "value": ,
     "units": "10¹² cells/L"
   },
   "hgb": {
-    "value": 12.3,
+    "value": ,
     "units": "g/dl"
   },
   "hct": {
-    "value": 36.7,
+    "value": ,
     "units": "%"
   },
   "mcv": {
-    "value": 89.5,
+    "value": ,
     "units": "fL"
   },
   "mch": {
-    "value": 29.8,
+    "value": ,
     "units": "pg"
   },
   "mchc": {
-    "value": 33.2,
+    "value": ,
     "units": "g/dL"
   },
   "rdw_cv": {
-    "value": 12.5,
+    "value": ,
     "units": "%"
   },
   "wbc": {
-    "value": 7.2,
+    "value": ,
     "units": "10³ cells/cmm"
   },
   "neu": {
-    "value": 55.0,
+    "value": ,
     "units": "%"
   },
   "lym": {
-    "value": 35.0,
+    "value": ,
     "units": "%"
   },
   "mo": {
-    "value": 7.0,
+    "value": ,
     "units": "%"
   },
   "eos": {
-    "value": 2.5,
+    "value": ,
     "units": "%"
   },
   "ba": {
-    "value": 0.5,
+    "value": ,
     "units": "%"
   }
 }
 
 
-Diagnostic Results (GET)
-Endpoint: /diagnose/results={diagnosisId}
+Diagnostic Results (GET)  -->  On Progress
+Endpoint: /{userId}/diagnose?results={diagnosisId}
+
+
+Adding Workouts (POST)  -->  On Progress
+Endpoint: /private/{privateKey}/add-workout
+
+
+Workout List (GET)  -->  On Progress
+Endpoint: /{userId}/workouts

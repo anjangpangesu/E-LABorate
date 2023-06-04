@@ -2,43 +2,65 @@ const express = require('express');
 const { validateDiagnosisInput } = require('./validation');
 const admin = require('firebase-admin');
 const userLog = require('./../log/logger');
-
+const { extractUserFromToken } = require('./../auth/auth');
 const router = express.Router();
 const db = admin.firestore();
 
-// Route to retrieve diagnosis result by ID
-router.get('/results=:id', async (req, res) => {
-  const diagnosisId = req.params.id;
+// Middleware to extract user information from JWT token
+router.use(extractUserFromToken);
 
+// Function to retrieve user profiles based on ID
+const getUserData = async (userId) => {
   try {
-    // Retrieve diagnosis data from Firestore
-    const diagnosisSnapshot = await db.collection('results').doc(diagnosisId).get();
+    // Get user data using user ID
+    const userQuery = await db.collection('users').doc(userId).get();
 
-    if (!diagnosisSnapshot.exists) {
-      return res.status(404).json({
+    if (!userQuery.exists) {
+      return {
         error: true,
-        message: 'Diagnosis not found'
-      });
+        message: 'User not found',
+      };
     }
 
-    const diagnosisData = diagnosisSnapshot.data();
+    const userData = userQuery.data();
 
-    return res.status(200).json({
+    // Check if user is authenticated (has token)
+    if (!userData.token) {
+      return {
+        error: true,
+        message: 'User not authenticated',
+      };
+    }
+
+    return {
       error: false,
-      message: 'Diagnosis retrieved',
-      diagnosisId: diagnosisId,
-      diagnosis: diagnosisData
-    });
+      message: 'User profile retrieved',
+      userData: {
+        userId: userData.userId,
+        username: userData.username,
+        email: userData.email,
+        phone: userData.phone,
+        address: userData.address,
+        token: userData.token,
+      },
+    };
   } catch (error) {
-    return res.status(500).json({
+    return {
       error: error,
-      message: 'Failed to retrieve diagnosis'
-    });
+      message: 'Error retrieving user profile',
+    };
   }
-});
+};
 
 // Route to diagnose
-router.post('/form', async (req, res) => {
+router.post('/:id/diagnose', async (req, res) => {
+  const userId = req.params.id;
+  const result = await getUserData(userId);
+
+  if (result.error) {
+    return res.status(404).json(result);
+  }
+
   const {
     age, sex, rbc,
     hgb, hct, mcv,
@@ -60,7 +82,7 @@ router.post('/form', async (req, res) => {
     const newDiagnosisId = db.collection('results').doc().id;
 
     const diagnosisData = {
-      id: newDiagnosisId,
+      diagnosisId: newDiagnosisId,
       age: age,
       sex: sex,
       rbc: {
@@ -126,13 +148,54 @@ router.post('/form', async (req, res) => {
     return res.status(200).json({
       error: false,
       message: 'Diagnosis saved',
-      diagnosisId: newDiagnosisId,
-      diagnosis: diagnosisData
+      userId: result.userData.userId,
+      username: result.userData.username,
+      token: result.userData.token,
+      diagnosisData: diagnosisData
     });
   } catch (error) {
     return res.status(500).json({
       error: error,
       message: 'Failed to save diagnosis'
+    });
+  }
+});
+
+// Route to retrieve diagnosis result by ID
+router.get('/:id/diagnose?results=:diagnosisId', async (req, res) => {
+  const diagnosisId = req.params.diagnosisId;
+  const userId = req.params.id;
+  const result = await getUserData(userId);
+
+  if (result.error) {
+    return res.status(404).json(result);
+  }
+
+  try {
+    // Retrieve diagnosis data from Firestore
+    const diagnosisSnapshot = await db.collection('results').doc(diagnosisId).get();
+
+    if (!diagnosisSnapshot.exists) {
+      return res.status(404).json({
+        error: true,
+        message: 'Diagnosis not found'
+      });
+    }
+
+    const diagnosisData = diagnosisSnapshot.data();
+
+    return res.status(200).json({
+      error: false,
+      message: 'Diagnosis retrieved',
+      userId: result.userData.userId,
+      username: result.userData.username,
+      token: result.userData.token,
+      diagnosis: diagnosisData
+    });
+  } catch (error) {
+    return res.status(500).json({
+      error: error,
+      message: 'Failed to retrieve diagnosis'
     });
   }
 });

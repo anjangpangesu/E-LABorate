@@ -1,7 +1,7 @@
 const express = require('express');
 const Joi = require('joi');
 const admin = require('firebase-admin');
-
+const verifyPrivateKey = require('./../private/keyValidator');
 const router = express.Router();
 const db = admin.firestore();
 
@@ -20,8 +20,18 @@ const validateDoctorInput = (data) => {
 };
 
 // Route to add a new doctor
-router.post('/', async (req, res) => {
+router.post('/:key/add-doctor', async (req, res) => {
+  const key = req.params.key;
   const { name, age, gender, specialty, work_place, experiences } = req.body;
+
+  // Verify private key
+  const isPrivateKeyValid = await verifyPrivateKey(key);
+  if (!isPrivateKeyValid) {
+    return res.status(401).json({
+      error: true,
+      message: 'Invalid private key',
+    });
+  }
 
   // Validate doctor input
   const { error } = validateDoctorInput(req.body);
@@ -44,7 +54,7 @@ router.post('/', async (req, res) => {
       experiences: experiences
     };
 
-    // Save doctor data to Firestore with generated ID
+    // Save doctor's data to Firestore with generated ID
     await db.collection('doctors').doc(newDoctorId).set(doctorData);
 
     return res.status(200).json({
