@@ -32,19 +32,23 @@ router.post('/', async (req, res) => {
   const { email } = req.body;
 
   try {
-    const userDoc = await db.collection('users').doc(email).get();
-    if (!userDoc.exists) {
+    const userDoc = await db.collection('users').where('email', '==', email).get();
+    if (userDoc.empty) {
       return res.status(404).json({
         error: true,
         message: "User not found"
       });
     }
 
+    const userData = userDoc.docs[0].data();
+    const userId = userData.userId;
+    const username = userData.username;
+
     // Generate verification code
     const verificationCode = Math.floor(100000 + Math.random() * 900000);
 
     // Save verification code to Firestore
-    await db.collection('users').doc(email).update({
+    await db.collection('users').doc(userId).update({
       verificationCode: verificationCode.toString()
     });
 
@@ -57,7 +61,10 @@ router.post('/', async (req, res) => {
     return res.status(200).json({
       error: false,
       message: "Verification code has been sent",
-      email: email
+      userId: userId,
+      username: username,
+      email: email,
+      verificationCode: verificationCode.toString()
     });
   } catch (error) {
     return res.status(500).json({

@@ -10,15 +10,17 @@ router.post('/', async (req, res) => {
   const { email, verificationCode } = req.body;
 
   try {
-    const userDoc = await db.collection('users').doc(email).get();
-    if (!userDoc.exists) {
+    const userDoc = await db.collection('users').where('email', '==', email).get();
+    if (userDoc.empty) {
       return res.status(404).json({
         error: error,
         message: "User not found"
       });
     }
 
-    const userData = userDoc.data();
+    const userData = userDoc.docs[0].data();
+    const userId = userData.userId;
+
     if (userData.verificationCode !== verificationCode) {
       return res.status(401).json({
         error: error,
@@ -27,13 +29,15 @@ router.post('/', async (req, res) => {
     }
 
     // Generate token for password reset
-    const token = jwt.sign({ email: email }, JWT_SECRET, { expiresIn: '1h' });
+    const resetToken = jwt.sign({ userId: userId }, JWT_SECRET, { expiresIn: '1h' });
 
     return res.status(200).json({
       error: false,
       message: "Token generated",
+      userId: userId,
+      username: userData.username,
       email: userData.email,
-      token
+      resetToken: resetToken
     });
   } catch (error) {
     return res.status(500).json({
