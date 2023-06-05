@@ -50,22 +50,6 @@ Endpoint: /{userId}/profile/edit
 }
 
 
-Adding Doctors (POST) --> Private API
-Endpoint: /private/{privateKey}/add-doctor
-{
-  "name": "",
-  "age": ,
-  "gender": "",
-  "specialty": "",
-  "work_place": ["", ""],
-  "experiences": 
-}
-
-
-Doctor List (GET)
-Endpoint: /{userId}/doctors-list
-
-
 Diagnostic Form (POST)  -->  On Progress
 Endpoint: /{userId}/diagnose
 {
@@ -130,9 +114,29 @@ Diagnostic Results (GET)  -->  On Progress
 Endpoint: /{userId}/diagnose?results={diagnosisId}
 
 
-Adding Workouts (POST)  -->  On Progress
+Adding Doctors (POST) --> Private API
+Endpoint: /private/{privateKey}/add-doctor
+{
+  "name": "",
+  "age": ,
+  "gender": "",
+  "specialty": "",
+  "work_place": ["", ""],
+  "experiences": 
+}
+
+
+Doctor List (GET)
+Endpoint: /{userId}/doctor-list
+
+
+Adding Workouts (POST)  -->  Private API
 Endpoint: /private/{privateKey}/add-workout
+{
+  "title": "",
+  "video_link": ""
+}
 
 
-Workout List (GET)  -->  On Progress
-Endpoint: /{userId}/workouts
+Workout List (GET)
+Endpoint: /{userId}/workout-list
