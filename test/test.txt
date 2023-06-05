@@ -28,8 +28,27 @@ Endpoint: /signout
 }
 
 
+Forgot Password (POS)
+Endpoint: /forgot-password
+{
+    "email": ""
+}
+
+
+Verify Code (POST)
+Endpoint: /verify-code
+{
+    "email": "",
+    "verificationCode": ""
+}
+
+
 Reset Password (POST)
-Endpoint:
+Endpoint: /reset-password
+{
+    "resetToken": "",
+    "newPassword": ""
+}
 
 
 Home (GET)
@@ -52,6 +71,7 @@ Endpoint: /{userId}/profile/edit
 
 Diagnostic Form (POST)  -->  On Progress
 Endpoint: /{userId}/diagnose
+// Do not change the "units" value. //
 {
   "age": ,
   "sex": ,
