@@ -1,7 +1,7 @@
 const express = require('express');
 const Joi = require('joi');
 const admin = require('firebase-admin');
-const verifyPrivateKey = require('./../private/keyValidator');
+const verifyPrivateKey = require('../private/keyValidator');
 const router = express.Router();
 const db = admin.firestore();
 
