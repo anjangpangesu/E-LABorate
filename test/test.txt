@@ -133,6 +133,23 @@ Endpoint: /{userId}/diagnose
 Diagnostic Results (GET)  -->  On Progress
 Endpoint: /{userId}/diagnose?results={diagnosisId}
 
+Profile (POST)
+Endpoint: /{userId}/add-to-cart/{medicineId}
+
+Profile (GET)
+Endpoint: /{userId}/cart
+
+Adding Medicines (POST) --> Private API
+Endpoint: /private/{privateKey}/add-medicine
+{
+  "name": "",
+  "description": ,
+  "price": ,
+  "stock":
+}
+
+Medicines List (GET)
+Endpoint: /{userId}/medicine-list
 
 Adding Doctors (POST) --> Private API
 Endpoint: /private/{privateKey}/add-doctor
