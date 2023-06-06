@@ -8,6 +8,8 @@ const forgotpassRouter = require('../auth/forgotpass');
 const verifycodeRouter = require('./../auth/verifycode');
 const resetpassRouter = require('./../auth/resetpass');
 const diagnoseRouter = require('./../diagnose/diagnose');
+const addMedicineRouter = require('../medicine/addMedicine');
+const medicineRouter = require('../medicine/medicine');
 const doctorRouter = require('../doctor/doctors');
 const addDoctorRouter = require('./../doctor/addDoctor');
 const workoutRouter = require('../workout/workouts');
@@ -17,7 +19,7 @@ const addWorkoutRouter = require('./../workout/addWorkout');
 app.use(express.json());
 
 // Public Routes
-app.use('/', userRouter, diagnoseRouter, doctorRouter, workoutRouter)
+app.use('/', userRouter, diagnoseRouter, doctorRouter, workoutRouter, medicineRouter)
 app.use('/signup', signupRouter);
 app.use('/signin', signinRouter);
 app.use('/signout', signoutRouter);
@@ -26,7 +28,7 @@ app.use('/verify-code', verifycodeRouter);
 app.use('/reset-password', resetpassRouter);
 
 // Private Routes
-app.use('/private', addDoctorRouter, addWorkoutRouter);
+app.use('/private', addDoctorRouter, addWorkoutRouter, addMedicineRouter);
 
 // Server startup
 app.listen(8080, () => {
