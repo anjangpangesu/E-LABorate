@@ -73,60 +73,60 @@ Diagnostic Form (POST)  -->  On Progress
 Endpoint: /{userId}/diagnose
 // Do not change the "units" value. //
 {
-  "age": ,
-  "sex": ,
-  "rbc": {
-    "value": ,
-    "units": "10¹² cells/L"
-  },
-  "hgb": {
-    "value": ,
-    "units": "g/dl"
-  },
-  "hct": {
-    "value": ,
-    "units": "%"
-  },
-  "mcv": {
-    "value": ,
-    "units": "fL"
-  },
-  "mch": {
-    "value": ,
-    "units": "pg"
-  },
-  "mchc": {
-    "value": ,
-    "units": "g/dL"
-  },
-  "rdw_cv": {
-    "value": ,
-    "units": "%"
-  },
-  "wbc": {
-    "value": ,
-    "units": "10³ cells/cmm"
-  },
-  "neu": {
-    "value": ,
-    "units": "%"
-  },
-  "lym": {
-    "value": ,
-    "units": "%"
-  },
-  "mo": {
-    "value": ,
-    "units": "%"
-  },
-  "eos": {
-    "value": ,
-    "units": "%"
-  },
-  "ba": {
-    "value": ,
-    "units": "%"
-  }
+    "age": ,
+    "sex": ,
+    "rbc": {
+        "value": ,
+        "units": "10¹² cells/L"
+    },
+    "hgb": {
+        "value": ,
+        "units": "g/dl"
+    },
+    "hct": {
+        "value": ,
+        "units": "%"
+    },
+    "mcv": {
+        "value": ,
+        "units": "fL"
+    },
+    "mch": {
+        "value": ,
+        "units": "pg"
+    },
+    "mchc": {
+        "value": ,
+        "units": "g/dL"
+    },
+    "rdw_cv": {
+        "value": ,
+        "units": "%"
+    },
+    "wbc": {
+        "value": ,
+        "units": "10³ cells/cmm"
+    },
+    "neu": {
+        "value": ,
+        "units": "%"
+    },
+    "lym": {
+        "value": ,
+        "units": "%"
+    },
+    "mo": {
+        "value": ,
+        "units": "%"
+    },
+    "eos": {
+        "value": ,
+        "units": "%"
+    },
+    "ba": {
+        "value": ,
+        "units": "%"
+    }
 }
 
 
@@ -134,21 +134,21 @@ Diagnostic Results (GET)  -->  On Progress
 Endpoint: /{userId}/diagnose?results={diagnosisId}
 
 
-Profile (POST)
+Cart (POST)
 Endpoint: /{userId}/add-to-cart/{medicineId}
 
 
-Profile (GET)
+Cart (GET)
 Endpoint: /{userId}/cart
 
 
 Adding Medicines (POST) --> Private API
 Endpoint: /private/{privateKey}/add-medicine
 {
-  "name": "",
-  "description": ,
-  "price": ,
-  "stock":
+    "name": "",
+    "description": ,
+    "price": ,
+    "stock":
 }
 
 
@@ -159,12 +159,12 @@ Endpoint: /{userId}/medicine-list
 Adding Doctors (POST) --> Private API
 Endpoint: /private/{privateKey}/add-doctor
 {
-  "name": "",
-  "age": ,
-  "gender": "",
-  "specialty": "",
-  "work_place": ["", ""],
-  "experiences": 
+    "name": "",
+    "age": ,
+    "gender": "",
+    "specialty": "",
+    "work_place": ["", ""],
+    "experiences": 
 }
 
 
@@ -175,8 +175,8 @@ Endpoint: /{userId}/doctor-list
 Adding Workouts (POST)  -->  Private API
 Endpoint: /private/{privateKey}/add-workout
 {
-  "title": "",
-  "video_link": ""
+    "title": "",
+    "video_link": ""
 }
 
 
