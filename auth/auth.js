@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const admin = require('firebase-admin');
-require('dotenv').config();
+require('dotenv').config({ path: 'SecretKey.env'});
 const db = admin.firestore();
 
 // JWT Configuration
