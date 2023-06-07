@@ -5,4 +5,4 @@ serviceAccountKey.json
 /.vscode/
 
 # exclude the env folder
-.env
+SecretKey.env
