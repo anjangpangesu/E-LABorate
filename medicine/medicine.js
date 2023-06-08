@@ -78,6 +78,7 @@ router.get('/:id/medicine-list', async (req, res) => {
 
     // Map the medicines array to desired format
   const medicineData = medicines.map((medicine) => ({
+    medicineId: medicine.medicineId,
     name: medicine.name,
     description: medicine.description,
     price: medicine.price,
