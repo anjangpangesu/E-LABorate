@@ -8,18 +8,20 @@ const forgotpassRouter = require('../auth/forgotpass');
 const verifycodeRouter = require('./../auth/verifycode');
 const resetpassRouter = require('./../auth/resetpass');
 const diagnoseRouter = require('./../diagnose/diagnose');
-const addMedicineRouter = require('../medicine/addMedicine');
-const medicineRouter = require('../medicine/medicine');
 const doctorRouter = require('../doctor/doctors');
 const addDoctorRouter = require('./../doctor/addDoctor');
 const workoutRouter = require('../workout/workouts');
 const addWorkoutRouter = require('./../workout/addWorkout');
+const medicineRouter = require('../medicine/medicine');
+const addMedicineRouter = require('../medicine/addMedicine');
+const cartRouter = require('../checkout/cart');
+const addToCartRouter = require('../checkout/addToCart');
 
 // Middleware to allow request body in JSON format
 app.use(express.json());
 
 // Public Routes
-app.use('/', userRouter, diagnoseRouter, doctorRouter, workoutRouter, medicineRouter)
+app.use('/', userRouter, diagnoseRouter, doctorRouter, workoutRouter, medicineRouter, addToCartRouter, cartRouter)
 app.use('/signup', signupRouter);
 app.use('/signin', signinRouter);
 app.use('/signout', signoutRouter);
