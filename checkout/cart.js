@@ -15,6 +15,7 @@ const getUserData = async (userId) => {
 
     if (!userQuery.exists) {
       return {
+        code: 404,
         error: true,
         message: 'User not found',
       };
@@ -25,12 +26,14 @@ const getUserData = async (userId) => {
     // Check if user is authenticated (has token)
     if (!userData.token) {
       return {
+        code: 404,
         error: true,
         message: 'User not authenticated',
       };
     }
 
     return {
+      code: 200,
       error: false,
       message: 'User profile retrieved',
       userData: {
@@ -44,6 +47,7 @@ const getUserData = async (userId) => {
     };
   } catch (error) {
     return {
+      code: 500,
       error: error,
       message: 'Error retrieving user profile',
     };
@@ -54,7 +58,6 @@ const getUserData = async (userId) => {
 router.get('/:userId/cart', async (req, res) => {
   try {
     const userId = req.params.userId;
-
     const userResult = await getUserData(userId);
 
     if (userResult.error) {
@@ -66,28 +69,36 @@ router.get('/:userId/cart', async (req, res) => {
 
     // Check if cart exists for the user
     if (!cartQuery.exists) {
-      return res.status(200).json({
+      return res.status(404).json({
+        code: 404,
         error: false,
         message: 'Cart is empty',
-        userId: userResult.userData.userId,
-        username: userResult.userData.username,
-        token: userResult.userData.token,
         cartItems: [],
+        userData: userResult.userData
       });
     }
 
     const cartData = cartQuery.data();
 
+    // Map the cart items to desired format
+    const cartItems = cartData.medicines.map((medicine) => ({
+      medicineId: medicine.medicineId,
+      name: medicine.name,
+      description: medicine.description,
+      price: medicine.price,
+      stock: medicine.stock
+    }));
+
     return res.status(200).json({
+      code: 200,
       error: false,
       message: 'Cart items retrieved',
-      userId: userResult.userData.userId,
-      username: userResult.userData.username,
-      token: userResult.userData.token,
-      cartItems: cartData.medicines,
+      cartItems: cartItems,
+      userData: userResult.userData
     });
   } catch (error) {
     return res.status(500).json({
+      code: 500,
       error: error,
       message: 'Failed to retrieve cart items',
     });

@@ -15,6 +15,7 @@ const getUserData = async (userId) => {
 
     if (!userQuery.exists) {
       return {
+        code: 404,
         error: true,
         message: 'User not found',
       };
@@ -25,12 +26,14 @@ const getUserData = async (userId) => {
     // Check if user is authenticated (has token)
     if (!userData.token) {
       return {
+        code: 404,
         error: true,
         message: 'User not authenticated',
       };
     }
 
     return {
+      code: 200,
       error: false,
       message: 'User profile retrieved',
       userData: {
@@ -44,6 +47,7 @@ const getUserData = async (userId) => {
     };
   } catch (error) {
     return {
+      code: 500,
       error: error,
       message: 'Error retrieving user profile',
     };
@@ -58,20 +62,31 @@ const getMedicineData = async (medicineId) => {
 
     if (!medicineQuery.exists) {
       return {
+        code: 404,
         error: true,
         message: 'Medicine not found',
       };
     }
 
     const medicineData = medicineQuery.data();
+    
+    const orderedMedicineData = {
+      medicineId: medicineData.medicineId,
+      name: medicineData.name,
+      description: medicineData.description,
+      price: medicineData.price,
+      stock: medicineData.stock
+    };
 
     return {
+      code: 200,
       error: false,
       message: 'Medicine data retrieved',
-      medicineData: medicineData,
+      medicineData: orderedMedicineData,
     };
   } catch (error) {
     return {
+      code: 500,
       error: error,
       message: 'Error retrieving medicine data',
     };
@@ -83,7 +98,6 @@ router.post('/:userId/add-to-cart/:medicineId', async (req, res) => {
   try {
     const userId = req.params.userId;
     const medicineId = req.params.medicineId;
-
     const userResult = await getUserData(userId);
 
     if (userResult.error) {
@@ -114,13 +128,22 @@ router.post('/:userId/add-to-cart/:medicineId', async (req, res) => {
       await db.collection('carts').doc(userId).update(cartData);
     }
 
-    return res.status(200).json({
-      error: false,
-      message: 'Medicine added to cart successfully',
+    // Reorder the user data properties
+    const orderedUserData = {
       userId: userResult.userData.userId,
       username: userResult.userData.username,
+      email: userResult.userData.email,
+      phone: userResult.userData.phone,
+      address: userResult.userData.address,
       token: userResult.userData.token,
+    };
+
+    return res.status(200).json({
+      code: 200,
+      error: false,
+      message: 'Medicine added to cart successfully',
       medicine: medicineResult.medicineData,
+      userData: orderedUserData
     });
   } catch (error) {
     return res.status(500).json({
