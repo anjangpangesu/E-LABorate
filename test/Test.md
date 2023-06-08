@@ -8,234 +8,232 @@
 
 ## User Authentication, Authorization, and Validation API
 
-### Sign Up (POST)
+-   ### Sign Up (POST)
+    Endpoint: `/signup`
 
-Endpoint: `/signup`
+    Request Body:
 
-Request Body:
+      ```
+      {
+          "username": "",
+          "email": "",
+          "password": "",
+          "confirmPassword": ""
+      }
+      ``` 
 
-```
-{
-    "username": "",
-    "email": "",
-    "password": "",
-    "confirmPassword": ""
-}
-```
+-   ### Sign In (POST)
+    Endpoint: `/signin`
 
-### Sign In (POST)
+    Request Body:
 
-Endpoint: `/signin`
+    ```
+    {
+        "email": "",
+        "password": ""
+    }
+    ```
 
-Request Body:
+-   ### Sign Out (POST)
+    Endpoint: `/signout`
 
-```
-{
-    "email": "",
-    "password": ""
-}
-```
+    RequestBody:
 
-### Sign Out (POST)
-Endpoint: `/signout`
+    ```
+    {
+        "token": ""
+    }
+    ```
 
-RequestBody:
+-   ### Forgot Password (POST)
+    Endpoint: `/forgot-password`
 
-```
-{
-    "token": ""
-}
-```
+    Request Body:
 
-### Forgot Password (POST)
-Endpoint: `/forgot-password`
+    ```
+    {
+        "email": ""
+    }
+    ```
 
-Request Body:
+-   ### Verify Code (POST)
+    Endpoint: `/verify-code`
 
-```
-{
-    "email": ""
-}
-```
+    Request Body:
 
-### Verify Code (POST)
-Endpoint: `/verify-code`
+    ```
+    {
+        "email": "",
+        "verificationCode": ""
+    }
+    ```
 
-Request Body:
+-   ### Reset Password (POST)
+    Endpoint: `/reset-password`
 
-```
-{
-    "email": "",
-    "verificationCode": ""
-}
-```
+    Request Body:
 
-### Reset Password (POST)
-Endpoint: `/reset-password`
-
-Request Body:
-
-```
-{
-    "resetToken": "",
-    "newPassword": ""
-}
-```
+    ```
+    {
+        "resetToken": "",
+        "newPassword": ""
+    }
+    ```
 
 ## User Data API
 
-### Home (GET)
-Endpoint: `/{userId}`
+-   ### Home (GET)
+    Endpoint: `/{userId}`
 
-### Profile (GET)
-Endpoint: `/{userId}/profile`
+-   ### Profile (GET)
+    Endpoint: `/{userId}/profile`
 
-### Edit Profile (POST)
-Endpoint: `/{userId}/profile/edit`
+-   ### Edit Profile (POST)
+    Endpoint: `/{userId}/profile/edit`
 
-Request Body:
+    Request Body:
 
-```
-{
-    "username": "",
-    "email": "",
-    "phone": "",
-    "address": ""
-}
-```
+    ```
+    {
+        "username": "",
+        "email": "",
+        "phone": "",
+        "address": ""
+    }
+    ```
 
 ## Diagnostic API
 
-### Diagnostic Form (POST)  -->  On Progress
-Endpoint: `/{userId}/diagnose`
+-   ### Diagnostic Form (POST)  -->  On Progress
+    Endpoint: `/{userId}/diagnose`
 
-Request Body:
+    Request Body:
 
-> Do not change the "units" value.
+    > Do not change the "units" value.
 
-```
-{
-    "age": ,
-    "sex": ,
-    "rbc": {
-        "value": ,
-        "units": "10¹² cells/L"
-    },
-    "hgb": {
-        "value": ,
-        "units": "g/dl"
-    },
-    "hct": {
-        "value": ,
-        "units": "%"
-    },
-    "mcv": {
-        "value": ,
-        "units": "fL"
-    },
-    "mch": {
-        "value": ,
-        "units": "pg"
-    },
-    "mchc": {
-        "value": ,
-        "units": "g/dL"
-    },
-    "rdw_cv": {
-        "value": ,
-        "units": "%"
-    },
-    "wbc": {
-        "value": ,
-        "units": "10³ cells/cmm"
-    },
-    "neu": {
-        "value": ,
-        "units": "%"
-    },
-    "lym": {
-        "value": ,
-        "units": "%"
-    },
-    "mo": {
-        "value": ,
-        "units": "%"
-    },
-    "eos": {
-        "value": ,
-        "units": "%"
-    },
-    "ba": {
-        "value": ,
-        "units": "%"
+    ```
+    {
+        "age": ,
+        "sex": ,
+        "rbc": {
+            "value": ,
+            "units": "10¹² cells/L"
+        },
+        "hgb": {
+            "value": ,
+            "units": "g/dl"
+        },
+        "hct": {
+            "value": ,
+            "units": "%"
+        },
+        "mcv": {
+            "value": ,
+            "units": "fL"
+        },
+        "mch": {
+            "value": ,
+            "units": "pg"
+        },
+        "mchc": {
+            "value": ,
+            "units": "g/dL"
+        },
+        "rdw_cv": {
+            "value": ,
+            "units": "%"
+        },
+        "wbc": {
+            "value": ,
+            "units": "10³ cells/cmm"
+        },
+        "neu": {
+            "value": ,
+            "units": "%"
+        },
+        "lym": {
+            "value": ,
+            "units": "%"
+        },
+        "mo": {
+            "value": ,
+            "units": "%"
+        },
+        "eos": {
+            "value": ,
+            "units": "%"
+        },
+        "ba": {
+            "value": ,
+            "units": "%"
+        }
     }
-}
-```
+    ```
 
-### Diagnostic Results (GET)  -->  On Progress
-Endpoint: `/{userId}/diagnose?results={diagnosisId}`
+-   ### Diagnostic Results (GET)  -->  On Progress
+    Endpoint: `/{userId}/diagnose?results={diagnosisId}`
 
 ## Medicine API
 
-### Adding Medicines (POST) --> Private API
-Endpoint: `/private/{privateKey}/add-medicine`
+-   ### Adding Medicines (POST) --> Private API
+    Endpoint: `/private/{privateKey}/add-medicine`
 
-Request Body:
+    Request Body:
 
-```
-{
-    "name": "",
-    "description": ,
-    "price": ,
-    "stock":
-}
-```
+    ```
+    {
+        "name": "",
+        "description": ,
+        "price": ,
+        "stock":
+    }
+    ```
 
-### Medicine List (GET)
-Endpoint: `/{userId}/medicine-list`
+-   ### Medicine List (GET)
+    Endpoint: `/{userId}/medicine-list`
 
 ## Cart API
 
-### Cart (POST)
-Endpoint: `/{userId}/add-to-cart/{medicineId}`
+-   ### Cart (POST)
+    Endpoint: `/{userId}/add-to-cart/{medicineId}`
 
-### Cart (GET)
-Endpoint: `/{userId}/cart`
+-   ### Cart (GET)
+    Endpoint: `/{userId}/cart`
 
 ## Doctor API
 
-### Adding Doctors (POST) --> Private API
-Endpoint: `/private/{privateKey}/add-doctor`
+-   ### Adding Doctors (POST) --> Private API
+    Endpoint: `/private/{privateKey}/add-doctor`
 
-Request Body:
+    Request Body:
 
-```
-{
-    "name": "",
-    "age": ,
-    "gender": "",
-    "specialty": "",
-    "work_place": ["", ""],
-    "experiences": 
-}
-```
+    ```
+    {
+        "name": "",
+        "age": ,
+        "gender": "",
+        "specialty": "",
+        "work_place": ["", ""],
+        "experiences": 
+    }
+    ```
 
-### Doctor List (GET)
-Endpoint: `/{userId}/doctor-list`
+-   ### Doctor List (GET)
+    Endpoint: `/{userId}/doctor-list`
 
 ## Workout API
 
-### Adding Workouts (POST)  -->  Private API
-Endpoint: `/private/{privateKey}/add-workout`
+-   ### Adding Workouts (POST)  -->  Private API
+    Endpoint: `/private/{privateKey}/add-workout`
 
-Request Body:
+    Request Body:
 
-```
-{
-    "title": "",
-    "video_link": ""
-}
-```
+    ```
+    {
+        "title": "",
+        "video_link": ""
+    }
+    ```
 
-### Workout List (GET)
-Endpoint: `/{userId}/workout-list`
+-   ### Workout List (GET)
+    Endpoint: `/{userId}/workout-list`
