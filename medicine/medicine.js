@@ -15,6 +15,7 @@ const getUserData = async (userId) => {
 
     if (!userQuery.exists) {
       return {
+        code: 404,
         error: true,
         message: 'User not found',
       };
@@ -25,12 +26,14 @@ const getUserData = async (userId) => {
     // Check if user is authenticated (has token)
     if (!userData.token) {
       return {
+        code: 404,
         error: true,
         message: 'User not authenticated',
       };
     }
 
     return {
+      code: 200,
       error: false,
       message: 'User profile retrieved',
       userData: {
@@ -44,6 +47,7 @@ const getUserData = async (userId) => {
     };
   } catch (error) {
     return {
+      code: 500,
       error: error,
       message: 'Error retrieving user profile',
     };
@@ -72,16 +76,24 @@ router.get('/:id/medicine-list', async (req, res) => {
       medicines.push(medicineData);
     });
 
+    // Map the medicines array to desired format
+  const medicineData = medicines.map((medicine) => ({
+    name: medicine.name,
+    description: medicine.description,
+    price: medicine.price,
+    stock: medicine.stock
+  }));
+
     return res.status(200).json({
+      code: 200,
       error: false,
       message: 'List of Medicines',
-      userId: result.userData.userId,
-      username: result.userData.username,
-      token: result.userData.token,
-      medicines: medicines
+      medicines: medicineData,
+      userData: result.userData
     });
   } catch (error) {
     return res.status(500).json({
+      code: 500,
       error: error,
       message: 'Failed to retrieve medicines'
     });

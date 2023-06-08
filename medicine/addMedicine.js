@@ -8,8 +8,15 @@ const db = admin.firestore();
 // Validate medicine input using Joi
 const validateMedicineInput = (data) => {
   const schema = Joi.object({
-    name: Joi.string().pattern(/^[a-zA-Z\s\p{P}]+$/u).required(),
-    description: Joi.string().required(),
+    name: Joi.string()
+      .regex(/^\S.*$/)
+      .message("Name should not start with a space")
+      .required(),
+    description: Joi.string()
+      .max(300)
+      .regex(/^\S.*$/)
+      .message("Description should not start with a space")
+      .required(),
     price: Joi.number().required(),
     stock: Joi.number().integer().required()
   });
@@ -26,6 +33,7 @@ router.post('/:key/add-medicine', async (req, res) => {
   const isPrivateKeyValid = await verifyPrivateKey(key);
   if (!isPrivateKeyValid) {
     return res.status(401).json({
+      code: 400,
       error: true,
       message: 'Invalid private key',
     });
@@ -35,6 +43,7 @@ router.post('/:key/add-medicine', async (req, res) => {
   const { error } = validateMedicineInput(req.body);
   if (error) {
     return res.status(400).json({
+      code: 400,
       error: error.details[0].message
     });
   }
@@ -54,12 +63,14 @@ router.post('/:key/add-medicine', async (req, res) => {
     await db.collection('medicines').doc(newMedicineId).set(medicineData);
 
     return res.status(200).json({
+      code: 200,
       error: false,
       message: 'Medicine data is successfully added',
       medicineData: medicineData
     });
   } catch (error) {
     return res.status(500).json({
+      code: 400,
       error: error,
       message: 'Medicine data failed to add'
     });
