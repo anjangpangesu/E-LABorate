@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const nodemailer = require('nodemailer');
 const admin = require('firebase-admin');
-
 const db = admin.firestore();
+require('dotenv').config({ path: 'SECRET_KEY.env' });
+const PASS = process.env.PASS;
 
 // Konfigurasi Nodemailer
 const transporter = nodemailer.createTransport({
