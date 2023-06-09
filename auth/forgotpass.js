@@ -7,23 +7,23 @@ const db = admin.firestore();
 
 // Konfigurasi Nodemailer
 const transporter = nodemailer.createTransport({
-  host: "sandbox.smtp.mailtrap.io",
-  port: 2525,
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
   auth: {
-    user: "6fa8684e60cf17",
-    pass: "ad5720c3e911c7"
+    user: 'anjangpangestu312@gmail.com',
+    pass: PASS
   }
 });
 
 // Fungsi helper untuk mengirim email
 const sendEmail = async (email, subject, message) => {
   const mailOptions = {
-    from: 'anjangpangestu2304@gmail.com',
+    from: 'anjangpangestu312@gmail.com',
     to: email,
     subject: subject,
-    text: message
+    html: message
   };
-
   await transporter.sendMail(mailOptions);
 };
 
