@@ -9,7 +9,7 @@ const db = admin.firestore();
 const validateWorkoutInput = (data) => {
   const schema = Joi.object({
     title: Joi.string().trim().regex(/^[a-zA-Z0-9\s\p{P}#()]+$/u).required(),
-    video_link: Joi.string().uri().required()
+    videoLink: Joi.string().uri().required()
   });
 
   return schema.validate(data);
@@ -18,12 +18,13 @@ const validateWorkoutInput = (data) => {
 // Route to add a new workout
 router.post('/:key/add-workout', async (req, res) => {
   const key = req.params.key;
-  const { title, video_link } = req.body;
+  const { title, videoLink } = req.body;
 
   // Verify private key
   const isPrivateKeyValid = await verifyPrivateKey(key);
   if (!isPrivateKeyValid) {
     return res.status(401).json({
+      code: 401,
       error: true,
       message: 'Invalid private key',
     });
@@ -33,6 +34,7 @@ router.post('/:key/add-workout', async (req, res) => {
   const { error } = validateWorkoutInput(req.body);
   if (error) {
     return res.status(400).json({
+      code: 400,
       error: error.details[0].message
     });
   }
@@ -43,19 +45,21 @@ router.post('/:key/add-workout', async (req, res) => {
     const workoutData = {
       workoutId: newWorkoutId,
       title: title,
-      video_link: video_link
+      videoLink: videoLink
     };
 
     // Save workout's data to Firestore with generated ID
     await db.collection('workouts').doc(newWorkoutId).set(workoutData);
 
     return res.status(200).json({
+      code: 200,
       error: false,
       message: 'Workout created',
       workoutData: workoutData
     });
   } catch (error) {
     return res.status(500).json({
+      code: 500,
       error: error,
       message: 'Failed to create workout'
     });

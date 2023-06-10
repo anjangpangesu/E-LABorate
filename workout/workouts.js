@@ -15,35 +15,40 @@ const getUserData = async (userId) => {
 
     if (!userQuery.exists) {
       return {
+        code: 404,
         error: true,
         message: 'User not found',
       };
     }
 
-    const userData = userQuery.data();
+    const userDocData = userQuery.data();
+    const userData = {
+      userId: userDocData.userId,
+      username: userDocData.username,
+      email: userDocData.email,
+      phone: userDocData.phone,
+      address: userDocData.address,
+      token: userDocData.token,
+    }
 
     // Check if user is authenticated (has token)
     if (!userData.token) {
       return {
+        code: 404,
         error: true,
         message: 'User not authenticated',
       };
     }
 
     return {
+      code: 200,
       error: false,
       message: 'User profile retrieved',
-      userData: {
-        userId: userData.userId,
-        username: userData.username,
-        email: userData.email,
-        phone: userData.phone,
-        address: userData.address,
-        token: userData.token,
-      },
+      userData: userData
     };
   } catch (error) {
     return {
+      code: 500,
       error: error,
       message: 'Error retrieving user profile',
     };
@@ -72,16 +77,25 @@ router.get('/:id/workout-list', async (req, res) => {
       workouts.push(workoutData);
     });
 
+    // Map the medicines array to desired format
+    const workoutData = workouts.map((workout) => ({
+      workoutId: workout.workoutId,
+      title: workout.title,
+      videoLink: workout.videoLink
+    }));
+
+    const userData = result.userData;
+
     return res.status(200).json({
+      code: 200,
       error: false,
       message: 'List of Workouts',
-      userId: result.userData.userId,
-      username: result.userData.username,
-      token: result.userData.token,
-      workouts: workouts
+      userData: userData,
+      workouts: workoutData
     });
   } catch (error) {
     return res.status(500).json({
+      code: 500,
       error: error,
       message: 'Failed to retrieve workouts'
     });
