@@ -231,7 +231,7 @@
     ```
     {
         "title": "",
-        "video_link": ""
+        "videoLink": ""
     }
     ```
 
