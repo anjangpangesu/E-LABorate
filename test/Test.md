@@ -213,7 +213,7 @@
         "age": ,
         "gender": "",
         "specialty": "",
-        "work_place": ["", ""],
+        "workplace": ["", ""],
         "experiences": 
     }
     ```
