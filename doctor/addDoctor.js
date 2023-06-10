@@ -8,12 +8,22 @@ const db = admin.firestore();
 // Validate doctor input using Joi
 const validateDoctorInput = (data) => {
   const schema = Joi.object({
-    name: Joi.string().pattern(/^[a-zA-Z\s\p{P}]+$/u).required(),
-    age: Joi.number().integer().required(),
-    gender: Joi.string().valid('Male', 'Female').required(),
+    name: Joi.string()
+      .pattern(/^[a-zA-Z\s\p{P}]+$/u)
+      .required(),
+    age: Joi.number()
+      .integer()
+      .required(),
+    gender: Joi.string()
+      .valid('Male', 'Female')
+      .required(),
     specialty: Joi.string().required(),
-    work_place: Joi.array().items(Joi.string().pattern(/^[a-zA-Z\s\p{P}]+$/u)).required(),
-    experiences: Joi.number().integer().required()
+    workplace: Joi.array()
+      .items(Joi.string().pattern(/^[a-zA-Z\s\p{P}]+$/u))
+      .required(),
+    experiences: Joi.number()
+      .integer()
+      .required()
   });
 
   return schema.validate(data);
@@ -22,12 +32,13 @@ const validateDoctorInput = (data) => {
 // Route to add a new doctor
 router.post('/:key/add-doctor', async (req, res) => {
   const key = req.params.key;
-  const { name, age, gender, specialty, work_place, experiences } = req.body;
+  const { name, age, gender, specialty, workplace, experiences } = req.body;
 
   // Verify private key
   const isPrivateKeyValid = await verifyPrivateKey(key);
   if (!isPrivateKeyValid) {
     return res.status(401).json({
+      code: 401,
       error: true,
       message: 'Invalid private key',
     });
@@ -37,6 +48,7 @@ router.post('/:key/add-doctor', async (req, res) => {
   const { error } = validateDoctorInput(req.body);
   if (error) {
     return res.status(400).json({
+      code: 400,
       error: error.details[0].message
     });
   }
@@ -50,7 +62,7 @@ router.post('/:key/add-doctor', async (req, res) => {
       age: age,
       gender: gender,
       specialty: specialty,
-      work_place: work_place,
+      workplace: workplace,
       experiences: experiences
     };
 
@@ -58,12 +70,14 @@ router.post('/:key/add-doctor', async (req, res) => {
     await db.collection('doctors').doc(newDoctorId).set(doctorData);
 
     return res.status(200).json({
+      code: 200,
       error: false,
       message: 'Doctor Created',
       doctorData: doctorData
     });
   } catch (error) {
     return res.status(500).json({
+      code: 500,
       error: error,
       message: 'Failed to create doctor'
     });

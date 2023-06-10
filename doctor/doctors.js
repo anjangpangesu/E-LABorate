@@ -15,6 +15,7 @@ const getUserData = async (userId) => {
 
     if (!userQuery.exists) {
       return {
+        code: 404,
         error: true,
         message: 'User not found',
       };
@@ -25,12 +26,14 @@ const getUserData = async (userId) => {
     // Check if user is authenticated (has token)
     if (!userData.token) {
       return {
+        code: 404,
         error: true,
         message: 'User not authenticated',
       };
     }
 
     return {
+      code: 200,
       error: false,
       message: 'User profile retrieved',
       userData: {
@@ -44,6 +47,7 @@ const getUserData = async (userId) => {
     };
   } catch (error) {
     return {
+      code: 500,
       error: error,
       message: 'Error retrieving user profile',
     };
@@ -65,6 +69,7 @@ router.get('/:id/doctor-list', async (req, res) => {
 
     // Create an empty array to store the doctor data
     const doctors = [];
+    const userData = result.userData;
 
     // Loop through each doctor document and extract the data
     doctorsSnapshot.forEach((doc) => {
@@ -72,16 +77,27 @@ router.get('/:id/doctor-list', async (req, res) => {
       doctors.push(doctorData);
     });
 
+    // Map the doctors array to desired format
+    const doctorsData = doctors.map((doctor) => ({
+      doctorId: doctor.doctorId,
+      name: doctor.name,
+      age: doctor.age,
+      gender: doctor.gender,
+      specialty: doctor.specialty,
+      workplace: doctor.workplace,
+      experiences: doctor.experiences
+    }));
+
     return res.status(200).json({
+      code: 200,
       error: false,
       message: 'List of Doctors',
-      userId: result.userData.userId,
-      username: result.userData.username,
-      token: result.userData.token,
-      doctors: doctors
+      userData: userData,
+      doctorsData: doctorsData
     });
   } catch (error) {
     return res.status(500).json({
+      code: 500,
       error: error,
       message: 'Failed to retrieve doctors'
     });
