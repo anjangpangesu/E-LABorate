@@ -1,9 +1,8 @@
 const express = require('express');
-const bcrypt = require('bcrypt');
 const Joi = require('joi');
+const bcrypt = require('bcrypt');
 const admin = require('firebase-admin');
 const userLog = require('./../log/logger');
-
 const router = express.Router();
 const db = admin.firestore();
 
@@ -17,7 +16,8 @@ const validateUserInput = (data) => {
       .required(),
     email: Joi.string()
       .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
-      .trim()
+      .pattern(/^\S*$/)
+      .message("Password should not contain spaces")
       .required(),
     password: Joi.string()
       .min(8)
@@ -42,6 +42,7 @@ router.post('/', async (req, res) => {
   const { error } = validateUserInput(req.body);
   if (error) {
     return res.status(400).json({
+      code: 400,
       error: error.details[0].message
     });
   }
@@ -51,6 +52,7 @@ router.post('/', async (req, res) => {
     const userSnapshot = await db.collection('users').where('email', '==', email).get();
     if (!userSnapshot.empty) {
       return res.status(400).json({
+        code: 400,
         error: error,
         message: "Email already exists"
       });
@@ -65,22 +67,25 @@ router.post('/', async (req, res) => {
     // Logging log messages to userLog
     userLog.info('SIGNED UP', { userId, username, email });
 
-    // Save user data to Firestore with generated IDs
-    await db.collection('users').doc(userId).set({
+    const userData = {
       userId: userId,
       username: username,
       email: email,
       password: hashedPassword
-    });
+    };
+
+    // Save user data to Firestore with generated IDs
+    await db.collection('users').doc(userId).set(userData);
     
     return res.status(200).json({
+      code: 200,
       error: false,
       message: 'User Created',
-      userId: userId,
-      username: username
+      userData: userData
     });
   } catch (error) {
     return res.status(500).json({
+      code: 500,
       error: error,
       message: 'Failed to create user'
     });

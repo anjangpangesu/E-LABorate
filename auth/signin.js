@@ -1,9 +1,8 @@
 const express = require('express');
-const auth = require('./auth');
 const Joi = require('joi');
+const auth = require('./auth');
 const admin = require('firebase-admin');
 const userLog = require('../log/logger');
-
 const router = express.Router();
 const db = admin.firestore();
 
@@ -28,6 +27,7 @@ router.post('/', async (req, res) => {
   const { error } = validateUserInput(req.body);
   if (error) {
     return res.status(400).json({
+      code: 400,
       error: error.details[0].message
     });
   }
@@ -37,19 +37,23 @@ router.post('/', async (req, res) => {
     const userDoc = await db.collection('users').where('email', '==', email).get();
     if (userDoc.empty) {
       return res.status(401).json({
+        code: 401,
         error: error,
         message: "Invalid email or password"
       });
     }
 
-    const userData = userDoc.docs[0].data();
-    const userId = userData.userId;
-    const username = userData.username;
+    const userDocData = userDoc.docs[0].data();
+    const userId = userDocData.userId;
+    const username = userDocData.username;
+    const phone = userDocData.phone;
+    const address = userDocData.address;
 
     // Verify passwords using bcrypt
-    const passwordMatch = await auth.verifyPassword(password, userData.password);
+    const passwordMatch = await auth.verifyPassword(password, userDocData.password);
     if (!passwordMatch) {
       return res.status(401).json({
+        code: 401,
         error: error,
         message: "Invalid email or password"
       });
@@ -64,20 +68,26 @@ router.post('/', async (req, res) => {
     });
 
     // Logging log messages to userLog
-    userLog.info('SIGNED IN', { userId, username, email, phone: userData.phone, address: userData.address });
+    userLog.info('SIGNED IN', { userId, username, email, phone, address });
+
+    const userData = {
+      userId: userId,
+      username: username,
+      email: email,
+      phone: phone,
+      address: address,
+      token: token
+    };
 
     return res.status(200).json({
+      code: 200,
       error: false,
       message: "User Signed In",
-      userId: userId,
-      email: email,
-      username: username,
-      phone: userData.phone,
-      address: userData.address,
-      token
+      userData: userData
     });
   } catch (error) {
     return res.status(500).json({
+      code: 500,
       error: error,
       message: "Error Signing In"
     });

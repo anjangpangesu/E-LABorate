@@ -1,8 +1,8 @@
 const express = require('express');
+const Joi = require('joi');
 const admin = require('firebase-admin');
 const { extractUserFromToken } = require('./auth');
 const userLog = require('../log/logger');
-
 const router = express.Router();
 const db = admin.firestore();
 
@@ -17,41 +17,71 @@ const getUserData = async (userId) => {
 
     if (!userQuery.exists) {
       return {
+        code: 404,
         error: true,
         message: 'User not found',
       };
     }
 
-    const userData = userQuery.data();
+    const userDocData = userQuery.data();
+    const userData = {
+      userId: userDocData.userId,
+      username: userDocData.username,
+      email: userDocData.email,
+      phone: userDocData.phone,
+      address: userDocData.address,
+      token: userDocData.token,
+    }
 
     // Check if user is authenticated (has token)
     if (!userData.token) {
       return {
+        code: 404,
         error: true,
         message: 'User not authenticated',
       };
     }
 
     return {
+      code: 200,
       error: false,
       message: 'User profile retrieved',
-      userData: {
-        userId: userData.userId,
-        username: userData.username,
-        email: userData.email,
-        phone: userData.phone,
-        address: userData.address,
-        token: userData.token,
-      },
+      userData: userData
     };
   } catch (error) {
     return {
+      code: 500,
       error: error,
       message: 'Error retrieving user profile',
     };
   }
 };
 
+// Validate user input using Joi
+const validateUserInput = (data) => {
+  const schema = Joi.object({
+    username: Joi.string()
+      .max(70)
+      .pattern(/^\S.*$/)
+      .message("Username should not start with a space")
+      .required(),
+    email: Joi.string()
+      .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
+      .required(),
+    phone: Joi.string()
+      .allow('')
+      .min(10)
+      .max(15)
+      .pattern(/^\d+$/)
+      .message("Phone number should only contain digits"),
+    address: Joi.string()
+      .allow('')
+      .pattern(/^\S.*$/)
+      .message("Address should not start with a space")
+  });
+
+  return schema.validate(data);
+};
 
 // Route to get user profile data based on ID
 router.get('/:id', async (req, res) => {
@@ -87,6 +117,16 @@ router.post('/:id/profile/edit', async (req, res) => {
     return res.status(404).json(result);
   }
 
+  // Validate user input
+  const { error } = validateUserInput(req.body);
+  if (error) {
+    return res.status(400).json({
+      code: 400,
+      error: true,
+      message: error.details[0].message
+    });
+  }
+
   try {
     // Update user documents with newly added phone numbers and addresses
     await db.collection('users').doc(userId).update({
@@ -96,20 +136,26 @@ router.post('/:id/profile/edit', async (req, res) => {
       address: address,
     });
 
-    // Logging log messages using userLog
-    userLog.info('PROFILE UPDATED', { userId, username, email, phone, address });
-
-    return res.status(200).json({
-      error: false,
-      message: 'User profile updated successfully',
+    const userData = {
       userId: userId,
       username: username,
       email: email,
       phone: phone,
-      address: address,
+      address: address
+    }
+
+    // Logging log messages using userLog
+    userLog.info('PROFILE UPDATED', { userId, username, email, phone, address });
+
+    return res.status(200).json({
+      code: 200,
+      error: false,
+      message: 'User profile updated successfully',
+      userData: userData
     });
   } catch (error) {
     return res.status(500).json({
+      code: 500,
       error: true,
       message: 'Error updating user profile',
     });
