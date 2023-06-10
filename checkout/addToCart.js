@@ -21,10 +21,18 @@ const getUserData = async (userId) => {
       };
     }
 
-    const userData = userQuery.data();
+    const userDocData = userQuery.data();
+    const userData = {
+      userId: userDocData.userId,
+      username: userDocData.username,
+      email: userDocData.email,
+      phone: userDocData.phone,
+      address: userDocData.address,
+      token: userDocData.token,
+    }
 
     // Check if user is authenticated (has token)
-    if (!userData.token) {
+    if (!userDocData.token) {
       return {
         code: 404,
         error: true,
@@ -36,14 +44,7 @@ const getUserData = async (userId) => {
       code: 200,
       error: false,
       message: 'User profile retrieved',
-      userData: {
-        userId: userData.userId,
-        username: userData.username,
-        email: userData.email,
-        phone: userData.phone,
-        address: userData.address,
-        token: userData.token,
-      },
+      userData: userData
     };
   } catch (error) {
     return {
@@ -69,7 +70,6 @@ const getMedicineData = async (medicineId) => {
     }
 
     const medicineData = medicineQuery.data();
-    
     const orderedMedicineData = {
       medicineId: medicineData.medicineId,
       name: medicineData.name,
@@ -120,11 +120,13 @@ router.post('/:userId/add-to-cart/:medicineId', async (req, res) => {
         userId: userId,
         medicines: [medicineResult.medicineData],
       };
+
       await db.collection('carts').doc(userId).set(newCartData);
     } else {
       // Update the existing cart for the user
       const cartData = cartQuery.data();
       cartData.medicines.push(medicineResult.medicineData);
+
       await db.collection('carts').doc(userId).update(cartData);
     }
 
