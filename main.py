@@ -48,9 +48,9 @@ app = FastAPI()
 # Define the GET endpoint to retrieve data
 
 
-@app.get("/data/{data_id}")
-def get_data(data_id: str):
-    doc_ref = db.collection('data').document(data_id)
+@app.get("/diagnosis/{diagnosis_id}")
+def get_data(diagnosis_id: str):
+    doc_ref = db.collection('diagnosis').document(diagnosis_id)
     doc = doc_ref.get()
     if doc.exists:
         return doc.to_dict()
@@ -89,7 +89,7 @@ def predict(data: InputData):
         'input_data': data.dict(),
         'output_data': output_data.dict()
     }
-    doc_ref = db.collection('data').document()
+    doc_ref = db.collection('diagnosis').document()
     doc_ref.set(data_dict)
 
     return output_data
