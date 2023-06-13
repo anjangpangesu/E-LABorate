@@ -36,6 +36,7 @@ We also use a couple of frameworks that help in the development stage.
 
 ### Library
 Here are a brief overview of some libraries in the backend development of the e-LABorate application. 
+
     Node.js:
     -   bcrypt: Encrypt and compare user passwords.
     -   crypto: To perform hash, encryption, and decryption.
