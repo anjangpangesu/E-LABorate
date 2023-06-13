@@ -1,18 +1,19 @@
-# Bangkit 2023 Capstone Project : e-LABorate
+# Bangkit 2023 Capstone Project [C23-PS270] : e-LABorate
 
 <img width="695" alt="logo" src="https://github.com/anjangpangesu/E-LABorate/assets/63623255/6d4275de-8265-41ef-938e-9b7447fbae3f">
 
 Hello everyone!. Here is our repository for Bangkit 2023 Capstone project. Our team consist of 2 Machine Learning, 2 Android, and 2 Cloud Computing.
 
 ### Team
-|            Name           | Bangkit ID  |   Learning Path    |
-|---------------------------|-------------|--------------------|
-| Andrea Natania            | M321DSY0091 | Machine Learning   |
-| Nathania Gunawan          | M321DSY1559 | Machine Learning   |
-| Alif Maulidanar           | C168DSX4895 | Cloud Computing    |
-| Anjang Pangestu Selokaton | C168DKX3963 | Cloud Computing    |
-| Efri Vahmi                | A011DSX2294 | Mobile Development |
-| Vinsensius Adrian Wijaya  | A168DKX4387 | Mobile Development |
+Here is the list of members of the C23-PS270 group.
+|            Name           | Bangkit ID  |   Learning Path    |                        LInkedIn                        |
+|---------------------------|-------------|--------------------|--------------------------------------------------------|
+| Andrea Natania            | M321DSY0091 | Machine Learning   | https://www.linkedin.com/in/andrea-natania/            |
+| Nathania Gunawan          | M321DSY1559 | Machine Learning   | https://www.linkedin.com/in/nathania-gunawan/          |
+| Alif Maulidanar           | C168DSX4895 | Cloud Computing    | https://www.linkedin.com/in/alifmaulidanar/            | 
+| Anjang Pangestu Selokaton | C168DKX3963 | Cloud Computing    | https://www.linkedin.com/in/anjang-pangestu-selokaton/ |
+| Efri Vahmi                | A011DSX2294 | Mobile Development | https://www.linkedin.com/in/efrivahmi/                 |
+| Vinsensius Adrian Wijaya  | A168DKX4387 | Mobile Development | https://www.linkedin.com/in/xm21/                      |
 
 ### Language
 We use two programming languages to create the backend of the e-LABorate application.
