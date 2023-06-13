@@ -69,4 +69,4 @@ Here is an API that we have developed, for those of you who want to try it, plea
 |            Name           |                          Link                            |                                 Documentation                                |
 |---------------------------|----------------------------------------------------------|------------------------------------------------------------------------------|
 | Backend API               | https://backend-dot-e-laborate-project.et.r.appspot.com/ | https://github.com/anjangpangesu/E-LABorate/blob/eLABorate-API/test/Test.md  |
-| ML MOdel API              | https://elaborate-ml-fexdiufx7a-et.a.run.app/            | https://elaborate-ml-fexdiufx7a-et.a.run.app/docs                            |
+| ML Model API              | https://elaborate-ml-fexdiufx7a-et.a.run.app/            | https://elaborate-ml-fexdiufx7a-et.a.run.app/docs                            |
