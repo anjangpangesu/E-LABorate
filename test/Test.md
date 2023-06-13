@@ -1,15 +1,15 @@
 # Testing API
 
-**Backend:** https://backend-dot-e-laborate-project.et.r.appspot.com/
+**Backend Base URL:** https://backend-dot-e-laborate-project.et.r.appspot.com/
 
-**ML Model:** https://elaborate-ml-fexdiufx7a-et.a.run.app/
+**ML Model Base URL:** https://elaborate-ml-fexdiufx7a-et.a.run.app/
 
 *****
 
 ## User Authentication, Authorization, and Validation API
 
 -   ### Sign Up (POST)
-    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/signup`
+    Endpoint: `/signup`
 
     Request Body:
 
@@ -23,7 +23,7 @@
       ``` 
 
 -   ### Sign In (POST)
-    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/signin`
+    Endpoint: `/signin`
 
     Request Body:
 
@@ -35,7 +35,7 @@
     ```
 
 -   ### Sign Out (POST)
-    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/signout`
+    Endpoint: `/signout`
 
     RequestBody:
 
@@ -46,7 +46,7 @@
     ```
 
 -   ### Forgot Password (POST)
-    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/forgot-password`
+    Endpoint: `/forgot-password`
 
     Request Body:
 
@@ -57,7 +57,7 @@
     ```
 
 -   ### Verify Code (POST)
-    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/verify-code`
+    Endpoint: `/verify-code`
 
     Request Body:
 
@@ -69,7 +69,7 @@
     ```
 
 -   ### Reset Password (POST)
-    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/reset-password`
+    Endpoint: `/reset-password`
 
     Request Body:
 
@@ -83,13 +83,13 @@
 ## User Data API
 
 -   ### Home (GET)
-    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/{userId}`
+    Endpoint: `/{userId}`
 
 -   ### Profile (GET)
-    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/{userId}/profile`
+    Endpoint: `/{userId}/profile`
 
 -   ### Edit Profile (POST)
-    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/{userId}/profile/edit`
+    Endpoint: `/{userId}/profile/edit`
 
     Request Body:
 
@@ -102,10 +102,10 @@
     }
     ```
 
-## Diagnosis API
+## Diagnosis API (Using ML Model Base URL)
 
 -   ### Diagnosis Form (POST)
-    Endpoint: `https://elaborate-ml-fexdiufx7a-et.a.run.app/predict`
+    Endpoint: `/predict`
 
     Request Body:
 
@@ -132,12 +132,12 @@
     ```
 
 -   ### Diagnosis Results (GET)
-    Endpoint: `https://elaborate-ml-fexdiufx7a-et.a.run.app/diagnose/{diagnosis_id}`
+    Endpoint: `/diagnose/{diagnosis_id}`
 
 ## Doctor API
 
 -   ### Adding Doctors (POST) --> Private API
-    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/private/{privateKey}/add-doctor`
+    Endpoint: `/private/{privateKey}/add-doctor`
 
     Request Body:
 
@@ -153,12 +153,12 @@
     ```
 
 -   ### Doctor List (GET)
-    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/{userId}/doctor-list`
+    Endpoint: `/{userId}/doctor-list`
 
 ## Workout API
 
 -   ### Adding Workouts (POST)  -->  Private API
-    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/private/{privateKey}/add-workout`
+    Endpoint: `/private/{privateKey}/add-workout`
 
     Request Body:
 
@@ -170,12 +170,12 @@
     ```
 
 -   ### Workout List (GET)
-    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/{userId}/workout-list`
+    Endpoint: `/{userId}/workout-list`
 
 ## Medicine API
 
 -   ### Adding Medicines (POST) --> Private API
-    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/private/{privateKey}/add-medicine`
+    Endpoint: `/private/{privateKey}/add-medicine`
 
     Request Body:
 
@@ -189,12 +189,13 @@
     ```
 
 -   ### Medicine List (GET)
-    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/{userId}/medicine-list`
+    Endpoint: `/{userId}/medicine-list`
 
 ## Cart API
 
 -   ### Cart (POST)
-    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/{userId}/add-to-cart/{medicineId}`
+    Endpoint: `/{userId}/add-to-cart/{medicineId}`
 
 -   ### Cart (GET)
-    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/{userId}/cart`
+    Endpoint: `/{userId}/cart`
+
