@@ -1,4 +1,4 @@
-# Bangkit 2023 Capstone Project [C23-PS270]: e-LABorate
+# Bangkit 2023 Capstone Project [C23-PS270] : e-LABorate
 
 <img width="695" alt="logo" src="https://github.com/anjangpangesu/E-LABorate/assets/63623255/6d4275de-8265-41ef-938e-9b7447fbae3f">
 
