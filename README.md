@@ -33,7 +33,6 @@ We use multiple tools in the development of the e-LABorate application.
 | Figma                     | Create low-fidelity and high-fidelity designs of the e-LABorate application | https://www.figma.com/                 |
 | Visual Studio Code        | Text Editor                                                                 | https://code.visualstudio.com/download |
 | Android Studio            | Integrated Development Environment (IDE) for Android app development        | https://developer.android.com/studio   |
-| Google Colab              |                                                                             | https://colab.research.google.com/     |
 | Google Cloud Platform     | Deploy Backend Application                                                  | https://cloud.google.com/?hl=id        |
 | Postman                   | Testing Backend API                                                         | https://www.postman.com/downloads/     |
 | GitHub                    | To store and manage code, as well as document and control its changes       | https://github.com/                    |
