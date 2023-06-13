@@ -109,8 +109,6 @@
 
     Request Body:
 
-    > Do not change the "units" value.
-
     ```
     {
         "age": ,
