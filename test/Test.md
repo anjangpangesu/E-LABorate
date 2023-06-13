@@ -1,15 +1,15 @@
 # Testing API
 
-**Local:** http://localhost:8080/
+**Backend:** https://backend-dot-e-laborate-project.et.r.appspot.com/
 
-**Online:** https://backend-dot-e-laborate-project.et.r.appspot.com/
+**ML Model:** https://elaborate-ml-fexdiufx7a-et.a.run.app/
 
 *****
 
 ## User Authentication, Authorization, and Validation API
 
 -   ### Sign Up (POST)
-    Endpoint: `/signup`
+    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/signup`
 
     Request Body:
 
@@ -23,7 +23,7 @@
       ``` 
 
 -   ### Sign In (POST)
-    Endpoint: `/signin`
+    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/signin`
 
     Request Body:
 
@@ -35,7 +35,7 @@
     ```
 
 -   ### Sign Out (POST)
-    Endpoint: `/signout`
+    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/signout`
 
     RequestBody:
 
@@ -46,7 +46,7 @@
     ```
 
 -   ### Forgot Password (POST)
-    Endpoint: `/forgot-password`
+    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/forgot-password`
 
     Request Body:
 
@@ -57,7 +57,7 @@
     ```
 
 -   ### Verify Code (POST)
-    Endpoint: `/verify-code`
+    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/verify-code`
 
     Request Body:
 
@@ -69,7 +69,7 @@
     ```
 
 -   ### Reset Password (POST)
-    Endpoint: `/reset-password`
+    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/reset-password`
 
     Request Body:
 
@@ -83,13 +83,13 @@
 ## User Data API
 
 -   ### Home (GET)
-    Endpoint: `/{userId}`
+    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/{userId}`
 
 -   ### Profile (GET)
-    Endpoint: `/{userId}/profile`
+    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/{userId}/profile`
 
 -   ### Edit Profile (POST)
-    Endpoint: `/{userId}/profile/edit`
+    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/{userId}/profile/edit`
 
     Request Body:
 
@@ -102,10 +102,10 @@
     }
     ```
 
-## Diagnostic API
+## Diagnosis API
 
--   ### Diagnostic Form (POST)  -->  On Progress
-    Endpoint: `/{userId}/diagnose`
+-   ### Diagnosis Form (POST)
+    Endpoint: `https://elaborate-ml-fexdiufx7a-et.a.run.app/predict`
 
     Request Body:
 
@@ -115,95 +115,29 @@
     {
         "age": ,
         "sex": ,
-        "rbc": {
-            "value": ,
-            "units": "10¹² cells/L"
-        },
-        "hgb": {
-            "value": ,
-            "units": "g/dl"
-        },
-        "hct": {
-            "value": ,
-            "units": "%"
-        },
-        "mcv": {
-            "value": ,
-            "units": "fL"
-        },
-        "mch": {
-            "value": ,
-            "units": "pg"
-        },
-        "mchc": {
-            "value": ,
-            "units": "g/dL"
-        },
-        "rdw_cv": {
-            "value": ,
-            "units": "%"
-        },
-        "wbc": {
-            "value": ,
-            "units": "10³ cells/cmm"
-        },
-        "neu": {
-            "value": ,
-            "units": "%"
-        },
-        "lym": {
-            "value": ,
-            "units": "%"
-        },
-        "mo": {
-            "value": ,
-            "units": "%"
-        },
-        "eos": {
-            "value": ,
-            "units": "%"
-        },
-        "ba": {
-            "value": ,
-            "units": "%"
-        }
+        "rbc": ,
+        "hgb": ,
+        "hct": ,
+        "mcv": ,
+        "mch": ,
+        "mchc": ,
+        "rdw_cv": ,
+        "wbc": ,
+        "neu": ,
+        "lym": ,
+        "mo": ,
+        "eos": ,
+        "ba": 
     }
     ```
 
--   ### Diagnostic Results (GET)  -->  On Progress
-    Endpoint: `/{userId}/diagnose?results={diagnosisId}`
-
-## Medicine API
-
--   ### Adding Medicines (POST) --> Private API
-    Endpoint: `/private/{privateKey}/add-medicine`
-
-    Request Body:
-
-    ```
-    {
-        "name": "",
-        "description": ,
-        "price": ,
-        "stock":
-    }
-    ```
-
--   ### Medicine List (GET)
-    Endpoint: `/{userId}/medicine-list`
-
-## Cart API
-
--   ### Cart (POST)
-    Endpoint: `/{userId}/add-to-cart/{medicineId}`
-
--   ### Cart (GET)
-    Endpoint: `/{userId}/cart`
+-   ### Diagnosis Results (GET)
+    Endpoint: `https://elaborate-ml-fexdiufx7a-et.a.run.app/diagnose/{diagnosis_id}`
 
 ## Doctor API
 
 -   ### Adding Doctors (POST) --> Private API
-    Endpoint: `/private/{privateKey}/add-doctor`
+    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/private/{privateKey}/add-doctor`
 
     Request Body:
 
@@ -219,12 +153,12 @@
     ```
 
 -   ### Doctor List (GET)
-    Endpoint: `/{userId}/doctor-list`
+    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/{userId}/doctor-list`
 
 ## Workout API
 
 -   ### Adding Workouts (POST)  -->  Private API
-    Endpoint: `/private/{privateKey}/add-workout`
+    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/private/{privateKey}/add-workout`
 
     Request Body:
 
@@ -236,4 +170,31 @@
     ```
 
 -   ### Workout List (GET)
-    Endpoint: `/{userId}/workout-list`
+    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/{userId}/workout-list`
+
+## Medicine API
+
+-   ### Adding Medicines (POST) --> Private API
+    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/private/{privateKey}/add-medicine`
+
+    Request Body:
+
+    ```
+    {
+        "name": "",
+        "description": ,
+        "price": ,
+        "stock":
+    }
+    ```
+
+-   ### Medicine List (GET)
+    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/{userId}/medicine-list`
+
+## Cart API
+
+-   ### Cart (POST)
+    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/{userId}/add-to-cart/{medicineId}`
+
+-   ### Cart (GET)
+    Endpoint: `https://backend-dot-e-laborate-project.et.r.appspot.com/{userId}/cart`
