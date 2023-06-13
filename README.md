@@ -64,7 +64,7 @@ The services that we utilize to develop and run this application are listed belo
 | Google Cloud Storage      | Testing Backend API                                    |
 | Cloud Firestore           | To store, manage, and access application data.         |
 
-### Backend API
+### API
 Here is an API that we have developed, for those of you who want to try it, please see the documentation.
 |            Name           |                          Link                            |
 |---------------------------|----------------------------------------------------------|
