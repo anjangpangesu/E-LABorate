@@ -1,198 +1,239 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Verification Code</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style type="text/css">
-  /**
-   * Google webfonts. Recommended to include the .woff version for cross-client compatibility.
-   */
-  @media screen {
-    @font-face {
-      font-family: 'Source Sans Pro';
-      font-style: normal;
-      font-weight: 400;
-      src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'), url(https://fonts.gstatic.com/s/sourcesanspro/v10/ODelI1aHBYDBqgeIAH2zlBM0YzuT7MdOe03otPbuUS0.woff) format('woff');
+  <style>
+    /* Avoid browser level font resizing.
+    1. Windows Mobile
+    2. iOS / OSX */
+    body,
+    table,
+    td,
+    a {
+      -ms-text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
     }
 
-    @font-face {
-      font-family: 'Source Sans Pro';
-      font-style: normal;
+    body {
+      width: 100% !important;
+      height: 100% !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      font-family: "Plus Jakarta Sans", Helvetica, Arial, sans-serif;
+    }
+
+    /* Better fluid images in Internet Explorer. */
+    img {
+      -ms-interpolation-mode: bicubic;
+    }
+
+    /* Remove blue links for iOS devices. */
+    a[x-apple-data-detectors] {
+      font-family: inherit !important;
+      font-size: inherit !important;
+      font-weight: inherit !important;
+      line-height: inherit !important;
+      color: inherit !important;
+      text-decoration: none !important;
+    }
+
+    /* Fix centering issues in Android 4.4. */
+    div[style*="margin: 16px 0;"] {
+      margin: 0 !important;
+    }
+
+    .preheader {
+      display: none;
+      max-width: 0;
+      max-height: 0;
+      overflow: hidden;
+      font-size: 1px;
+      line-height: 1px;
+      color: #fff;
+      opacity: 0;
+    }
+
+    table {
+      border-collapse: collapse !important;
+      border: 0;
+    }
+
+    table .inside-table {
+      max-width: 600px;
+      width: 100%;
+    }
+
+    a {
+      color: #1a82e2;
+    }
+
+    img {
+      height: auto;
+      line-height: 100%;
+      text-decoration: none;
+      outline: none;
+      border: 0;
+    }
+
+    .img-logo {
+      display: block;
+      width: 52px;
+      height: 52px;
+      max-width: 52px;
+      min-width: 52px;
+    }
+
+    .link-logo {
+      display: inline-block;
+    }
+
+    td .logo {
+      text-align: center;
+      padding: 36px 24px;
+    }
+
+    td .hero {
+      text-align: left;
+      padding: 36px 24px 0;
+      border-top: 3px solid #d4dadf;
+      background-color: #fff;
+    }
+
+    td .message,
+    td .ignore,
+    td .regards {
+      text-align: left;
+      background-color: #fff;
+      padding: 24px;
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    td .regards {
+      border-bottom: 3px solid #d4dadf;
+    }
+
+    td .permission,
+    td .rights {
+      text-align: center;
+      background-color: #e9ecef;
+      padding: 12px 24px;
+      font-size: 12px;
+      line-height: 20px;
+      color: #666;
+    }
+
+    .paragraph {
+      margin: 0;
+    }
+
+    .header-hero,
+    .verification-code {
+      margin: 0;
+      font-size: 32px;
       font-weight: 700;
-      src: local('Source Sans Pro Bold'), local('SourceSansPro-Bold'), url(https://fonts.gstatic.com/s/sourcesanspro/v10/toadOcfmlt9b38dHJxOBGFkQc6VGVFSmCnC_l7QZG60.woff) format('woff');
+      letter-spacing: -1px;
+      line-height: 48px;
     }
-  }
 
-  /**
-   * Avoid browser level font resizing.
-   * 1. Windows Mobile
-   * 2. iOS / OSX
-   */
-  body,
-  table,
-  td,
-  a {
-    -ms-text-size-adjust: 100%; /* 1 */
-    -webkit-text-size-adjust: 100%; /* 2 */
-  }
+    .verification-code {
+      font-size: 28px;
+    }
 
-  /**
-   * Remove extra space added to tables and cells in Outlook.
-   */
-  table,
-  td {
-    mso-table-rspace: 0pt;
-    mso-table-lspace: 0pt;
-  }
+    .td1-verification {
+      background-color: #fff;
+      padding: 12px;
+    }
 
-  /**
-   * Better fluid images in Internet Explorer.
-   */
-  img {
-    -ms-interpolation-mode: bicubic;
-  }
+    .td2-verification {
+      border-radius: 6px;
+    }
 
-  /**
-   * Remove blue links for iOS devices.
-   */
-  a[x-apple-data-detectors] {
-    font-family: inherit !important;
-    font-size: inherit !important;
-    font-weight: inherit !important;
-    line-height: inherit !important;
-    color: inherit !important;
-    text-decoration: none !important;
-  }
+    .bolder {
+      font-weight: bolder;
+    }
 
-  /**
-   * Fix centering issues in Android 4.4.
-   */
-  div[style*="margin: 16px 0;"] {
-    margin: 0 !important;
-  }
+    @media screen {
+      @font-face {
+        font-family: "Plus Jakarta Sans";
+        font-style: normal;
+        font-weight: 400;
+        src: url(https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans&display=swap)
+          format("woff");
+      }
 
-  body {
-    width: 100% !important;
-    height: 100% !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-
-  /**
-   * Collapse table borders to avoid space between cells.
-   */
-  table {
-    border-collapse: collapse !important;
-  }
-
-  a {
-    color: #1a82e2;
-  }
-
-  img {
-    height: auto;
-    line-height: 100%;
-    text-decoration: none;
-    border: 0;
-    outline: none;
-  }
+      @font-face {
+        font-family: "Plus Jakarta Sans";
+        font-style: normal;
+        font-weight: 700;
+        src: url(https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700&display=swap)
+          format("woff");
+      }
+    }
   </style>
-
 </head>
-<body style="background-color: #e9ecef;">
+<body>
+  <!-- Preheader -->
+  <div class="preheader">Enter this code to reset your password.</div>
 
-  <!-- start preheader -->
-  <div class="preheader" style="display: none; max-width: 0; max-height: 0; overflow: hidden; font-size: 1px; line-height: 1px; color: #fff; opacity: 0;">
-    Enter this code to reset your password.
-  </div>
-  <!-- end preheader -->
+  <!-- Email Body -->
+  <table cellpadding="0" cellspacing="0" width="100%">
 
-  <!-- start body -->
-  <table border="0" cellpadding="0" cellspacing="0" width="100%">
-
-    <!-- start logo -->
+    <!-- Logo -->
     <tr>
       <td align="center" bgcolor="#e9ecef">
-        <!--[if (gte mso 9)|(IE)]>
-        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
-        <tr>
-        <td align="center" valign="top" width="600">
-        <![endif]-->
-        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+        <table class="inside-table" cellpadding="0" cellspacing="0">
           <tr>
-            <td align="center" valign="top" style="padding: 36px 24px;">
-              <a href="https://backend-dot-e-laborate-project.et.r.appspot.com/" target="_blank" style="display: inline-block;">
-                <img src="./img/elaborate.svg" alt="E-LABorate" border="0" width="48" style="display: block; width: 48px; max-width: 48px; min-width: 48px;">
+            <td class="logo" valign="top">
+              <a class="link-logo" href="https://backend-dot-e-laborate-project.et.r.appspot.com/" target="_blank">
+                <img class="img-logo" src="img/elaborate.png" title="e-LABorate" alt="e-LABorate">
               </a>
             </td>
           </tr>
         </table>
-        <!--[if (gte mso 9)|(IE)]>
-        </td>
-        </tr>
-        </table>
-        <![endif]-->
       </td>
     </tr>
-    <!-- end logo -->
 
-    <!-- start hero -->
+    <!-- Hero -->
     <tr>
       <td align="center" bgcolor="#e9ecef">
-        <!--[if (gte mso 9)|(IE)]>
-        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
-        <tr>
-        <td align="center" valign="top" width="600">
-        <![endif]-->
-        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+        <table class="inside-table" cellpadding="0" cellspacing="0">
           <tr>
-            <td align="left" bgcolor="#ffffff" style="padding: 36px 24px 0; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; border-top: 3px solid #d4dadf;">
-              <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">Verification Code</h1>
+            <td class="hero">
+              <h1 class="header-hero">Verification Code</h1>
             </td>
           </tr>
         </table>
-        <!--[if (gte mso 9)|(IE)]>
-        </td>
-        </tr>
-        </table>
-        <![endif]-->
       </td>
     </tr>
-    <!-- end hero -->
 
-    <!-- start copy block -->
+    <!-- Message -->
     <tr>
       <td align="center" bgcolor="#e9ecef">
-        <!--[if (gte mso 9)|(IE)]>
-        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
-        <tr>
-        <td align="center" valign="top" width="600">
-        <![endif]-->
-        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+        <table class="inside-table" cellpadding="0" cellspacing="0">
 
-          <!-- start copy -->
+          <!-- Upper Paragraphs -->
           <tr>
-            <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-              <p style="margin: 0;">E-LABorate received a request to reset password for {{email}}.</p>
+            <td class="message">
+              <p class="paragraph">e-LABorate received a request to reset password for {{email}}.</p>
               <br>
-              <p style="margin: 0;">To reset your password, enter this code in E-LABorate app:</p>
+              <p class="paragraph">To reset your password, enter this code in e-LABorate app:</p>
             </td>
           </tr>
-          <!-- end copy -->
 
-          <!-- start button -->
+          <!-- Verification Code -->
           <tr>
             <td align="left" bgcolor="#ffffff">
-              <table border="0" cellpadding="0" cellspacing="0" width="100%">
+              <table cellpadding="0" cellspacing="0" width="100%">
                 <tr>
-                  <td align="center" bgcolor="#ffffff" style="padding: 12px;">
-                    <table border="0" cellpadding="0" cellspacing="0">
+                  <td class="td1-verification" align="center">
+                    <table cellpadding="0" cellspacing="0">
                       <tr>
-                        <td align="center" style="border-radius: 6px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;">
-                          <h2 style="margin: 0; font-size: 28px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">{{verificationCode}}</h2>
+                        <td class="td2-verification">
+                          <h2 class="verification-code">{{verificationCode}}</h2>
                         </td>
                       </tr>
                     </table>
@@ -201,74 +242,47 @@
               </table>
             </td>
           </tr>
-          <!-- end button -->
 
-          <!-- start copy -->
+          <!-- Lower Paragraph -->
           <tr>
-            <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-              <p style="margin: 0;">Ignore this message if you did not do this activity.</p>
+            <td class="ignore">
+              <p class="paragraph">Ignore this message if you did not do this activity.</p>
             </td>
           </tr>
-          <!-- end copy -->
 
-          <!-- start copy -->
+          <!-- Regards -->
           <tr>
-            <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px; border-bottom: 3px solid #d4dadf">
-              <p style="margin: 0;">Regards,<br><span style="font-weight: bolder;">E-LABorate Team</span></p>
+            <td class="regards">
+              <p class="paragraph">Regards,<br><span class="bolder">e-LABorate Team</span></p>
             </td>
           </tr>
-          <!-- end copy -->
-
         </table>
-        <!--[if (gte mso 9)|(IE)]>
-        </td>
-        </tr>
-        </table>
-        <![endif]-->
       </td>
     </tr>
-    <!-- end copy block -->
 
-    <!-- start footer -->
+    <!-- Footer -->
     <tr>
       <td align="center" bgcolor="#e9ecef" style="padding: 24px;">
-        <!--[if (gte mso 9)|(IE)]>
-        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
-        <tr>
-        <td align="center" valign="top" width="600">
-        <![endif]-->
-        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+        <table class="inside-table" cellpadding="0" cellspacing="0">
 
-          <!-- start permission -->
+          <!-- Permission -->
           <tr>
-            <td align="center" bgcolor="#e9ecef" style="padding: 12px 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 12px; line-height: 20px; color: #666;">
-              <p style="margin: 0;">You received this email to let you know about important changes to your E-LABorate account.</p>
-              <br>
-              <p style="margin: 0;">Please contact <span style="font-weight: bolder;">{{teamEmail}}</span> if you need help.</p>
+            <td class="permission">
+              <p class="paragraph">You received this email to let you know about important changes to your e-LABorate account.</p><br>
+              <p class="paragraph">Please contact <span class="bolder">{{teamEmail}}</span> if you need help.</p>
             </td>
           </tr>
-          <!-- end permission -->
 
-          <!-- start unsubscribe -->
+          <!-- Rights -->
           <tr>
-            <td align="center" bgcolor="#e9ecef" style="padding: 12px 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 12px; line-height: 20px; color: #666;">
-              <p style="margin: 0;">© 2023 E-LABorate Team. All rights reserved.<br>Jakarta, Indonesia</p>
+            <td class="rights">
+              <p class="paragraph">© 2023 e-LABorate. All rights reserved.</p>
+              <p class="paragraph">Jakarta, Indonesia.</p>
             </td>
           </tr>
-          <!-- end unsubscribe -->
-
         </table>
-        <!--[if (gte mso 9)|(IE)]>
-        </td>
-        </tr>
-        </table>
-        <![endif]-->
       </td>
     </tr>
-    <!-- end footer -->
-
   </table>
-  <!-- end body -->
-
 </body>
 </html>
