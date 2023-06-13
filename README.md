@@ -93,7 +93,7 @@ The services that we utilize to develop and run this application are listed belo
 |---------------------------|--------------------------------------------------------|
 | Google App Engine         | To deploy Node.js based API and backend services       |
 | Google Cloud Run          | To deploy FastAPI based API and machine learning model |
-| Google Cloud Storage      | Testing Backend API                                    |
+| Google Cloud Storage      | Store application images                               |
 | Cloud Firestore           | To store, manage, and access application data.         |
 | TBD                       |                                                        |
 
