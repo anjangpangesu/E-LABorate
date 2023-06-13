@@ -15,7 +15,7 @@ Here is the list of members of the C23-PS270 team.
 | Efri Vahmi                | A011DSX2294 | Mobile Development | https://www.linkedin.com/in/efrivahmi/                 |
 | Vinsensius Adrian Wijaya  | A168DKX4387 | Mobile Development | https://www.linkedin.com/in/xm21/                      |
 
-### Language
+### Languages
 We use two programming languages to develop the backend of the e-LABorate application.
 |            Name           |        Implementation of      |         Documentation        |
 |---------------------------|------------------------------ |------------------------------|
@@ -37,7 +37,7 @@ We also use a couple of frameworks that help in the development stage.
 | Express.js                | We use Express.js for backend and API development           | https://expressjs.com/en/5x/api.html   |
 | FastAPI                   | we use FastAPI for the machine learning model development   | https://fastapi.tiangolo.com/tutorial/ |
 
-### Library
+### Libraries
 Here are a brief overview of some libraries in the backend development of the e-LABorate application. 
 
     Node.js:
@@ -55,7 +55,7 @@ Here are a brief overview of some libraries in the backend development of the e-
     -  pydantic: Defines the data model with automatic validation, parsing, and data transformation.
     -  firebase-admin: Provides access to the Firebase services from the Python server side.
 
-### Service on Google Cloud Platform
+### Services on Google Cloud Platform
 The services that we utilize to develop and run this application are listed below.
 |            Name           |                  Implementation of                     |
 |---------------------------|--------------------------------------------------------|
@@ -65,7 +65,7 @@ The services that we utilize to develop and run this application are listed belo
 | Cloud Firestore           | To store, manage, and access application data.         |
 
 ### API
-Here is an API that we have developed, for those of you who want to try it, please see the documentation.
+Here are APIs that we have developed, for those of you who want to try it, please see the documentation.
 |            Name           |                          Link                            |                                 Documentation                                |
 |---------------------------|----------------------------------------------------------|------------------------------------------------------------------------------|
 | Backend API               | https://backend-dot-e-laborate-project.et.r.appspot.com/ | https://github.com/anjangpangesu/E-LABorate/blob/eLABorate-API/test/Test.md  |
