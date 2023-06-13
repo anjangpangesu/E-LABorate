@@ -16,7 +16,7 @@ Here is the list of members of the C23-PS270 team.
 | Vinsensius Adrian Wijaya  | A168DKX4387 | Mobile Development | https://www.linkedin.com/in/xm21/                      |
 
 ### Language
-We use two programming languages to create the backend of the e-LABorate application.
+We use two programming languages to develop the backend of the e-LABorate application.
 |            Name           |        Implementation of      |         Documentation        |
 |---------------------------|------------------------------ |------------------------------|
 | Node.js                   | Create All API, ex: Diagnosis | https://nodejs.org/en/docs   |
@@ -61,7 +61,7 @@ The services that we utilize to develop and run this application are listed belo
 |---------------------------|--------------------------------------------------------|
 | Google App Engine         | To deploy Node.js based API and backend services       |
 | Google Cloud Run          | To deploy FastAPI based API and machine learning model |
-| Google Cloud Storage      | Testing Backend API                                    |
+| Google Cloud Storage      | Store application images                               |
 | Cloud Firestore           | To store, manage, and access application data.         |
 
 ### API
