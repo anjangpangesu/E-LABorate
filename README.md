@@ -27,29 +27,31 @@ The following is a project schedule for making the e-LABorate application.
 
 
 ### Tools
-We use multiple tools in the development of the e-LABorate application:
--   Figma
--   Visual Studio Code
--   Android Studio
--   Google Colab
--   Google Cloud Platform
--   Postman
--   GitHub
--   Notion
--   
+We use multiple tools in the development of the e-LABorate application.
+|            Name           |                               Implementation of                             |                   Link                 |
+|---------------------------|-----------------------------------------------------------------------------|----------------------------------------|
+| Figma                     | Create low-fidelity and high-fidelity designs of the e-LABorate application | https://www.figma.com/                 |
+| Visual Studio Code        | Text Editor                                                                 | https://code.visualstudio.com/download |
+| Android Studio            | Integrated Development Environment (IDE) for Android app development        | https://developer.android.com/studio   |
+| Google Colab              |                                                                             | https://colab.research.google.com/     |
+| Google Cloud Platform     | Deploy Backend Application                                                  | https://cloud.google.com/?hl=id        |
+| Postman                   | Testing Backend API                                                         | https://www.postman.com/downloads/     |
+| GitHub                    | To store and manage code, as well as document and control its changes       | https://github.com/                    |
+| Notion                    | To activity management of each member                                       | https://www.notion.so/                 |
+| TBD                       |                                                                             |                                        |
 
 ### Frameworks
 We also use a couple of frameworks that help in the development stage.
--   Express.js: We use Express.js for backend and API development, such as route creation, middleware creation, request/error handling, database integration, etc.
--   FastAPI
--   
+|            Name           |                       Implementation of                     |              Documentation             |
+|---------------------------|-------------------------------------------------------------|----------------------------------------|
+| Express.js                | We use Express.js for backend and API development           | https://expressjs.com/en/5x/api.html   |
+| FastAPI                   | we use FastAPI for the machine learning model development   | https://fastapi.tiangolo.com/tutorial/ |
 
 ### Library
 Here are a brief overview of some libraries in the development of the e-LABorate application.
-1.  Machine Learning
-2.  Mobile Development
-3.  Cloud Computing
-    
+
+A. Cloud Cumputing
+
     Node.js:
     -   bcrypt: Encrypt and compare user passwords.
     -   crypto: To perform hash, encryption, and decryption.
@@ -65,13 +67,35 @@ Here are a brief overview of some libraries in the development of the e-LABorate
     -  pydantic: Defines the data model with automatic validation, parsing, and data transformation.
     -  firebase-admin: Provides access to the Firebase services from the Python server side.
 
+B. Machine Learning
+
+    TBD:
+    -   
+    -  
+    
+    TBD:
+    -   
+    -  
+
+C. Mobile Development
+
+    TBD:
+    -   
+    -  
+    
+    TBD:
+    -   
+    -  
+
 ### Service
 The services that we utilize to develop and run this application are listed below.
--   Google App Engine: To deploy Node.js based API and backend services.
--   Google Cloud Run: To deploy FastAPI based API and machine learning model.
--   Google Cloud Storage: To store images.
--   Cloud Firestore: To store, manage, and access application data.
--   
+|            Name           |                  Implementation of                     |
+|---------------------------|--------------------------------------------------------|
+| Google App Engine         | To deploy Node.js based API and backend services       |
+| Google Cloud Run          | To deploy FastAPI based API and machine learning model |
+| Google Cloud Storage      | Testing Backend API                                    |
+| Cloud Firestore           | To store, manage, and access application data.         |
+| TBD                       |                                                        |
 
 ### Application
 TBD
