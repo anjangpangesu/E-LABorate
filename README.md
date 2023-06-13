@@ -22,13 +22,51 @@ The following is a project schedule for making the e-LABorate application.
 <img width="568" alt="Project Schedule" src="https://github.com/anjangpangesu/E-LABorate/assets/63623255/a666c7d4-c891-4abc-b1f0-f9f6a701e63c">
 
 ### Tools
-TBD
+We use multiple tools in the development of the e-LABorate application:
+-   Figma
+-   Visual Studio Code
+-   Android Studio
+-   Google Colab
+-   Google Cloud Platform
+-   Postman
+-   GitHub
+-   Notion
+-   
+
+### Frameworks
+We also use a couple of frameworks that help in the development stage.
+-   Express.js: We use Express.js for backend and API development, such as route generation, request/error handling, middleware creation, database integration, etc.
+-   FastAPI
+-   
 
 ### Library
-TBD
+Here are a brief overview of some libraries in the development of the e-LABorate application.
+1.  Machine Learning
+2.  Mobile Development
+3.  Cloud Computing
+    
+    Node.js:
+    -   bcrypt: Encrypt and compare user passwords.
+    -   crypto: To perform hash, encryption, and decryption.
+    -   dotenv: This package is useful for storing other configurations of the application.
+    -   firebase-admin: Provides access to the Firebase services from the Node.js server side.
+    -   joi: Helps in validating user input data.
+    -   jsonwebtoken: It is utilized to secure the API and store user information in a verifiable token.
+    -   nodemailer: To send an email from Node.js.
+    -   winston: It helps to log application activities and assists in monitoring and diagnosing the application.
+    
+    FastAPI:
+    -  numpy: To perform numerical computation.
+    -  pydantic: Defines the data model with automatic validation, parsing, and data transformation.
+    -  firebase-admin: Provides access to the Firebase services from the Python server side.
 
 ### Service
-TBD
+The services that we utilize to develop and run this application are listed below.
+-   Google App Engine: To deploy backend services.
+-   Google Cloud Run: To deploy machine learning model and API.
+-   Google Cloud Storage: To store images.
+-   Cloud Firestore: To store, manage, and access application data.
+-   
 
 ### Application
 TBD
