@@ -38,7 +38,7 @@ We use multiple tools in the development of the e-LABorate application.
 | Postman                   | Testing Backend API                                                         | https://www.postman.com/downloads/     |
 | GitHub                    | To store and manage code, as well as document and control its changes       | https://github.com/                    |
 | Notion                    | To activity management of each member                                       | https://www.notion.so/                 |
-| TBD                       |                                                                             |                                        |
+| Jupyter Notebook          | To model the data                                                           | https://jupyter.org/                   |
 
 ### Frameworks
 We also use a couple of frameworks that help in the development stage.
@@ -69,13 +69,28 @@ A. Cloud Cumputing
 
 B. Machine Learning
 
-    TBD:
-    -   
-    -  
+    TensorFlow:
+    -  Sequential: specify a neural network, precisely, sequential: from input to output, passing through a series of neural layers, one after the other
+    -  Dense: a dense layer
+    -  activation: sets the element-wise activation function to be used in the dense layer. 
+    -  input_shape: determine the input shape to be used in the sequence
+    -  kernel_regularizer: apply penalties on layer parameters or layer activity during optimization.
+    -  Dropout: randomly sets input units to 0 with a frequency of rate at each step during training time
+    -  compile: configures the model for training
+    -  fit: fit the model
+    -  evaluate: evaluate the model
+    -  TFLiteConverter: convert the model to TFLite format
     
-    TBD:
-    -   
-    -  
+    Pandas:
+    -  read_csv: To read excel csv format dataset   
+    -  drop: To drop not needed columns
+    -  unique: To see unique values in a column
+    
+    scikit-learn:
+    -  StandardScaler: removes the mean and scales each feature/variable to unit variance
+    -  fit_transform: fit the data into a model and transform it into a form that is more suitable for the model in a single step
+    -  to_categorical: converts a class vector (integers) to binary class matrix
+    -  train_test_split: split data into a training set and a testing set
 
 C. Mobile Development
 
