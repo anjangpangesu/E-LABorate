@@ -54,7 +54,7 @@ Here are a brief overview of some libraries in the backend development of the e-
     -  pydantic: Defines the data model with automatic validation, parsing, and data transformation.
     -  firebase-admin: Provides access to the Firebase services from the Python server side.
 
-### Service on GOogle Cloud Platform
+### Service on Google Cloud Platform
 The services that we utilize to develop and run this application are listed below.
 |            Name           |                  Implementation of                     |
 |---------------------------|--------------------------------------------------------|
