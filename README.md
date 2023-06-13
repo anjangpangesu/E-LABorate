@@ -35,7 +35,7 @@ We use multiple tools in the development of the e-LABorate application:
 
 ### Frameworks
 We also use a couple of frameworks that help in the development stage.
--   Express.js: We use Express.js for backend and API development, such as route generation, request/error handling, middleware creation, database integration, etc.
+-   Express.js: We use Express.js for backend and API development, such as route creation, middleware creation, request/error handling, database integration, etc.
 -   FastAPI
 -   
 
@@ -62,8 +62,8 @@ Here are a brief overview of some libraries in the development of the e-LABorate
 
 ### Service
 The services that we utilize to develop and run this application are listed below.
--   Google App Engine: To deploy backend services.
--   Google Cloud Run: To deploy machine learning model and API.
+-   Google App Engine: To deploy Node.js based API and backend services.
+-   Google Cloud Run: To deploy FastAPI based API and machine learning model.
 -   Google Cloud Storage: To store images.
 -   Cloud Firestore: To store, manage, and access application data.
 -   
