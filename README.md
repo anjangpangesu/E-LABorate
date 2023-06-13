@@ -1,4 +1,7 @@
 # Bangkit 2023 Capstone Project : e-LABorate
+
+<img width="695" alt="logo" src="https://github.com/anjangpangesu/E-LABorate/assets/63623255/6d4275de-8265-41ef-938e-9b7447fbae3f">
+
 Hello everyone!. Here is our repository for Bangkit 2023 Capstone project. Our team consist of 2 Machine Learning, 2 Android, and 2 Cloud Computing.
 
 ### Team
@@ -19,7 +22,7 @@ However, during COVID-19 pandemic, the amount of laboratory test demand increase
 ### Project Schedule
 The following is a project schedule for making the e-LABorate application.
 
-<img width="695" alt="image" src="https://github.com/anjangpangesu/E-LABorate/assets/63623255/fe2fda23-7b67-4ff3-81f4-1de1a37307db">
+<img width="695" alt="project timeline" src="https://github.com/anjangpangesu/E-LABorate/assets/63623255/fe2fda23-7b67-4ff3-81f4-1de1a37307db">
 
 
 ### Tools
