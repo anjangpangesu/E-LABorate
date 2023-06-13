@@ -26,7 +26,7 @@ We use multiple tools in the development of the e-LABorate application.
 |            Name           |         Implementation of  |                  Link                  |
 |---------------------------|----------------------------|----------------------------------------|
 | Visual Studio Code        | Text Editor                | https://code.visualstudio.com/download |
-| Google Cloud Platform     | Deploy Backend Application | https://console.cloud.google.com/      |
+| Google Cloud Platform     | Deploy Backend Application | https://cloud.google.com/?hl=id        |
 | Postman                   | Testing Backend API        | https://www.postman.com/downloads/     |
 
 ### Frameworks
