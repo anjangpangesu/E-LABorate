@@ -15,14 +15,14 @@ Hello everyone!. Here is our repository for Bangkit 2023 Capstone project. Our t
 | Vinsensius Adrian Wijaya  | A168DKX4387 | Mobile Development |
 
 ### Language
-We use two programming languages to create the backend of the e-LABorate application:
+We use two programming languages to create the backend of the e-LABorate application.
 |            Name           |        Implementation of      |         Documentation        |
 |---------------------------|------------------------------ |------------------------------|
 | Node.js                   | Create All API, ex: Diagnosis | https://nodejs.org/en/docs   |
 | Python                    | Create Diagnosis API          | https://docs.python.org/3.9/ |
 
 ### Tools
-We use multiple tools in the development of the e-LABorate application:
+We use multiple tools in the development of the e-LABorate application.
 |            Name           |         Implementation of  |                  Link                  |
 |---------------------------|----------------------------|----------------------------------------|
 | Visual Studio Code        | Text Editor                | https://code.visualstudio.com/download |
@@ -31,12 +31,14 @@ We use multiple tools in the development of the e-LABorate application:
 
 ### Frameworks
 We also use a couple of frameworks that help in the development stage.
--   Express.js: We use Express.js for backend and API development, such as route creation, middleware creation, request/error handling, database integration, etc.
--   FastAPI: we use FastAPI for deploy the machine learning model
+|            Name           |                       Implementation of                     |              Documentation             |
+|---------------------------|-------------------------------------------------------------|----------------------------------------|
+| Express.js                | We use Express.js for backend and API development           | https://expressjs.com/en/5x/api.html   |
+| FastAPI                   | we use FastAPI for the machine learning model development   | https://fastapi.tiangolo.com/tutorial/ |
 
 ### Library
 Here are a brief overview of some libraries in the backend development of the e-LABorate application. 
-    
+
     Node.js:
     -   bcrypt: Encrypt and compare user passwords.
     -   crypto: To perform hash, encryption, and decryption.
@@ -52,7 +54,7 @@ Here are a brief overview of some libraries in the backend development of the e-
     -  pydantic: Defines the data model with automatic validation, parsing, and data transformation.
     -  firebase-admin: Provides access to the Firebase services from the Python server side.
 
-### Service on Google Cloud Platform
+### Service on GOogle Cloud Platform
 The services that we utilize to develop and run this application are listed below.
 |            Name           |                  Implementation of                     |
 |---------------------------|--------------------------------------------------------|
