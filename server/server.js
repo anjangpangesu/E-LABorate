@@ -7,7 +7,6 @@ const signoutRouter = require('./../auth/signout');
 const forgotpassRouter = require('../auth/forgotpass');
 const verifycodeRouter = require('./../auth/verifycode');
 const resetpassRouter = require('./../auth/resetpass');
-const diagnoseRouter = require('./../diagnose/diagnose');
 const doctorRouter = require('../doctor/doctors');
 const addDoctorRouter = require('./../doctor/addDoctor');
 const workoutRouter = require('../workout/workouts');
@@ -21,7 +20,7 @@ const addToCartRouter = require('../checkout/addToCart');
 app.use(express.json());
 
 // Public Routes
-app.use('/', userRouter, diagnoseRouter, doctorRouter, workoutRouter, medicineRouter, addToCartRouter, cartRouter)
+app.use('/', userRouter, doctorRouter, workoutRouter, medicineRouter, addToCartRouter, cartRouter)
 app.use('/signup', signupRouter);
 app.use('/signin', signinRouter);
 app.use('/signout', signoutRouter);
@@ -31,6 +30,11 @@ app.use('/reset-password', resetpassRouter);
 
 // Private Routes
 app.use('/private', addDoctorRouter, addWorkoutRouter, addMedicineRouter);
+
+// Handle root URL
+app.get('/', (req, res) => {
+  res.redirect('/signin');
+});
 
 // Server startup
 app.listen(8080, () => {
