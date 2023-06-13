@@ -5,7 +5,7 @@
 Hello everyone!. Here is our repository for Bangkit 2023 Capstone project. Our team consist of 2 Machine Learning, 2 Android, and 2 Cloud Computing.
 
 ### Team
-Here is the list of members of the C23-PS270 group.
+Here is the list of members of the C23-PS270 team.
 |            Name           | Bangkit ID  |   Learning Path    |                        LInkedIn                        |
 |---------------------------|-------------|--------------------|--------------------------------------------------------|
 | Andrea Natania            | M321DSY0091 | Machine Learning   | https://www.linkedin.com/in/andrea-natania/            |
