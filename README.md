@@ -66,9 +66,7 @@ The services that we utilize to develop and run this application are listed belo
 
 ### API
 Here is an API that we have developed, for those of you who want to try it, please see the documentation.
-|            Name           |                          Link                            |
-|---------------------------|----------------------------------------------------------|
-| Backend API               | https://backend-dot-e-laborate-project.et.r.appspot.com/ |
-| ML MOdel API              | https://elaborate-ml-fexdiufx7a-et.a.run.app/docs        |
-
-Documentation: https://github.com/anjangpangesu/E-LABorate/blob/eLABorate-API/test/Test.md
+|            Name           |                          Link                            |                                 Documentation                                |
+|---------------------------|----------------------------------------------------------|------------------------------------------------------------------------------|
+| Backend API               | https://backend-dot-e-laborate-project.et.r.appspot.com/ | https://github.com/anjangpangesu/E-LABorate/blob/eLABorate-API/test/Test.md  |
+| ML MOdel API              | https://elaborate-ml-fexdiufx7a-et.a.run.app/            | https://elaborate-ml-fexdiufx7a-et.a.run.app/docs                            |
