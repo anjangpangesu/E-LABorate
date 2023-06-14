@@ -47,10 +47,21 @@ def get_data(diagnosisId: str, userId: str):
     user_ref = db.collection('users').document(userId)
     user = user_ref.get()
     if user.exists:
-        doc_ref = db.collection('diagnosis').document(diagnosisId)
-        doc = doc_ref.get()
-        if doc.exists:
-            return doc.to_dict()
+        userDiagnosisId = user.to_dict().get('diagnosisId')
+        if diagnosisId == userDiagnosisId:
+            diagnosis_ref = db.collection('diagnosis').document(diagnosisId)
+            diagnosis = diagnosis_ref.get()
+            if diagnosis.exists:
+                output_data = diagnosis.to_dict().get('output_data')
+                prediction = output_data.get('prediction')
+                diagnosis_data = {
+                    'diagnosisId': diagnosis.to_dict().get('diagnosisId'),
+                    'input_data': diagnosis.to_dict().get('input_data'),
+                    'prediction': prediction
+                }
+                return diagnosis_data
+            else:
+                return {"message": "Data not found"}
         else:
             return {"message": "Data not found"}
     else:
