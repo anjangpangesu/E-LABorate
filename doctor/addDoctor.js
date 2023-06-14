@@ -19,10 +19,12 @@ const validateDoctorInput = (data) => {
       .required(),
     specialty: Joi.string().required(),
     workplace: Joi.array()
-      .items(Joi.string().pattern(/^[a-zA-Z\s\p{P}]+$/u))
+      .items(Joi.string()
+      .pattern(/^[a-zA-Z\s\p{P}]+$/u))
       .required(),
-    experiences: Joi.number()
-      .integer()
+    experiences: Joi.array()
+      .items(Joi.string()
+      .pattern(/^[\w\s().-]+$/u))
       .required()
   });
 
