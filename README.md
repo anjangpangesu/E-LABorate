@@ -25,6 +25,11 @@ The following is a project schedule for making the e-LABorate application.
 
 <img width="695" alt="project timeline" src="https://github.com/anjangpangesu/E-LABorate/assets/63623255/fe2fda23-7b67-4ff3-81f4-1de1a37307db">
 
+### Cloud Architecture Design
+We designed a cloud architecture that will be used as a reference for developing the backend side of the application.
+
+<img width="695" alt="cloud architecture design" src="https://github.com/anjangpangesu/E-LABorate/assets/71235904/27c9ee6a-fcf4-4828-8a13-e4626f551b8a">
+
 
 ### Tools
 We use multiple tools in the development of the e-LABorate application.
@@ -101,7 +106,7 @@ C. Mobile Development
     -   
     -  
 
-### Service
+### Services
 The services that we utilize to develop and run this application are listed below.
 |            Name           |                  Implementation of                     |
 |---------------------------|--------------------------------------------------------|
