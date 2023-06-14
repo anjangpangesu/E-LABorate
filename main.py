@@ -13,8 +13,6 @@ firebase_admin.initialize_app(cred)
 db = firestore.client()
 
 # Define the input data schema
-
-
 class InputData(BaseModel):
     age: int
     sex: int
@@ -33,11 +31,9 @@ class InputData(BaseModel):
     ba: float
 
 # Define the output data schema
-
-
 class OutputData(BaseModel):
+    diagnosisId: str
     prediction: int
-
 
 # Load the ML model
 model = load_model('./elaborate_model.h5')
@@ -46,29 +42,28 @@ model = load_model('./elaborate_model.h5')
 app = FastAPI()
 
 # Define the GET endpoint to retrieve data
-
-
-@app.get("/diagnosis/{diagnosis_id}")
-def get_data(diagnosis_id: str):
-    doc_ref = db.collection('diagnosis').document(diagnosis_id)
-    doc = doc_ref.get()
-    if doc.exists:
-        return doc.to_dict()
+@app.get("/{userId}/diagnosis/{diagnosisId}")
+def get_data(diagnosisId: str, userId: str):
+    user_ref = db.collection('users').document(userId)
+    user = user_ref.get()
+    if user.exists:
+        doc_ref = db.collection('diagnosis').document(diagnosisId)
+        doc = doc_ref.get()
+        if doc.exists:
+            return doc.to_dict()
+        else:
+            return {"message": "Data not found"}
     else:
-        return {"message": "Data not found"}
+        return {"message": "User not found"}
 
 # Define the GET endpoint for hello message
-
-
 @app.get("/")
 def hello():
     return {"message": "ML Model Success to Deploy"}
 
 # Define the prediction endpoint
-
-
-@app.post("/predict", response_model=OutputData)
-def predict(data: InputData):
+@app.post("/{userId}/predict", response_model=OutputData)
+def predict(data: InputData, userId: str):
     # Convert input data to a numpy array
     input_array = np.array([[
         data.age, data.sex, data.rbc, data.hgb, data.hct, data.mcv, data.mch,
@@ -81,15 +76,23 @@ def predict(data: InputData):
     # Convert the prediction to the corresponding class label
     class_label = np.argmax(prediction, axis=1)[0]
 
+    # Generate diagnosisId
+    diagnosisId = db.collection('diagnosis').document().id
+    
     # Create the output data
-    output_data = OutputData(prediction=class_label)
+    output_data = OutputData(diagnosisId=diagnosisId, prediction=class_label)
 
     # Save the input and output data to Firestore
     data_dict = {
+        'diagnosisId': diagnosisId,
         'input_data': data.dict(),
         'output_data': output_data.dict()
     }
-    doc_ref = db.collection('diagnosis').document()
+    doc_ref = db.collection('diagnosis').document(diagnosisId)
     doc_ref.set(data_dict)
+    
+    # Update the user document with diagnosisId
+    user_ref = db.collection('users').document(userId)
+    user_ref.update({'diagnosisId': diagnosisId})
 
     return output_data
