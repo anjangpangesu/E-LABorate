@@ -24,6 +24,7 @@ const getUserData = async (userId) => {
     const userDocData = userQuery.data();
     const userData = {
       userId: userDocData.userId,
+      diagnosisId: userDocData.diagnosisId,
       username: userDocData.username,
       email: userDocData.email,
       phone: userDocData.phone,

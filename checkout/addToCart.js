@@ -24,6 +24,7 @@ const getUserData = async (userId) => {
     const userDocData = userQuery.data();
     const userData = {
       userId: userDocData.userId,
+      diagnosisId: userDocData.diagnosisId,
       username: userDocData.username,
       email: userDocData.email,
       phone: userDocData.phone,
@@ -133,6 +134,7 @@ router.post('/:userId/add-to-cart/:medicineId', async (req, res) => {
     // Reorder the user data properties
     const orderedUserData = {
       userId: userResult.userData.userId,
+      diagnosisId: userResult.userData.diagnosisId,
       username: userResult.userData.username,
       email: userResult.userData.email,
       phone: userResult.userData.phone,
@@ -144,8 +146,8 @@ router.post('/:userId/add-to-cart/:medicineId', async (req, res) => {
       code: 200,
       error: false,
       message: 'Medicine added to cart successfully',
-      medicine: medicineResult.medicineData,
-      userData: orderedUserData
+      userData: orderedUserData,
+      medicine: medicineResult.medicineData
     });
   } catch (error) {
     return res.status(500).json({

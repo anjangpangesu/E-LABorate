@@ -38,6 +38,7 @@ const getUserData = async (userId) => {
       message: 'User profile retrieved',
       userData: {
         userId: userData.userId,
+        diagnosisId: userData.diagnosisId,
         username: userData.username,
         email: userData.email,
         phone: userData.phone,

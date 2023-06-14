@@ -24,6 +24,7 @@ const getUserData = async (userId) => {
     const userDocData = userQuery.data();
     const userData = {
       userId: userDocData.userId,
+      diagnosisId: userDocData.diagnosisId,
       username: userDocData.username,
       email: userDocData.email,
       phone: userDocData.phone,
@@ -74,8 +75,8 @@ router.get('/:userId/cart', async (req, res) => {
         code: 404,
         error: false,
         message: 'Cart is empty',
-        cartItems: [],
-        userData: userResult.userData
+        userData: userResult.userData,
+        cartItems: []
       });
     }
 
@@ -94,8 +95,8 @@ router.get('/:userId/cart', async (req, res) => {
       code: 200,
       error: false,
       message: 'Cart items retrieved',
-      cartItems: cartItems,
-      userData: userResult.userData
+      userData: userResult.userData,
+      cartItems: cartItems
     });
   } catch (error) {
     return res.status(500).json({

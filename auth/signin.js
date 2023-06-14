@@ -45,6 +45,7 @@ router.post('/', async (req, res) => {
 
     const userDocData = userDoc.docs[0].data();
     const userId = userDocData.userId;
+    const diagnosisId = userDocData.diagnosisId;
     const username = userDocData.username;
     const phone = userDocData.phone;
     const address = userDocData.address;
@@ -72,6 +73,7 @@ router.post('/', async (req, res) => {
 
     const userData = {
       userId: userId,
+      diagnosisId: diagnosisId,
       username: username,
       email: email,
       phone: phone,

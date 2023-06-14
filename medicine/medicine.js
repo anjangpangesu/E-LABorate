@@ -38,6 +38,7 @@ const getUserData = async (userId) => {
       message: 'User profile retrieved',
       userData: {
         userId: userData.userId,
+        diagnosisId: userData.diagnosisId,
         username: userData.username,
         email: userData.email,
         phone: userData.phone,
@@ -89,8 +90,8 @@ router.get('/:id/medicine-list', async (req, res) => {
       code: 200,
       error: false,
       message: 'List of Medicines',
-      medicines: medicineData,
-      userData: result.userData
+      userData: result.userData,
+      medicines: medicineData
     });
   } catch (error) {
     return res.status(500).json({
