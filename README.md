@@ -110,15 +110,12 @@ C. Mobile Development
     -   OkHttp3: An HTTP client library used as the underlying network layer for Retrofit. OkHttp3 provides features such as  request/response interception, caching, and efficient connection pooling.
     
     View Binding & Glide :
-    -   View Binding: An Android feature that allows for more efficient and type-safe access to views in XML layouts. It generates a 
-binding class for each XML layout, which eliminates the need for using findViewById and provides direct access to views. 
-    -   Glide: An image loading and caching library for Android. It simplifies the process of loading images from various sources (local,
-remote, or content providers) and handles caching, resizing, and displaying images efficiently.
+    -   View Binding: An Android feature that allows for more efficient and type-safe access to views in XML layouts. It generates a binding class for each XML layout, which eliminates the need for using findViewById and provides direct access to views. 
+    -   Glide: An image loading and caching library for Android. It simplifies the process of loading images from various sources (local, remote, or content providers) and handles caching, resizing, and displaying images efficiently.
     
     MVVM & Clean Code: 
     -   MVVM (Model-View-ViewModel): A software architecture pattern that separates the UI (View) from the underlying data (Model) by  introducing a ViewModel layer. It promotes separation of concerns and provides a more maintainable and testable codebase.
-    -   Clean Code: A set of principles and practices for writing code that is easy to understand, maintain, and enhance. It focuses on 
-code readability, simplicity, and adhering to software design principles, such as SOLID and DRY. Clean code helps improve code quality, collaboration, and overall software development process.
+    -   Clean Code: A set of principles and practices for writing code that is easy to understand, maintain, and enhance. It focuses on code readability, simplicity, and adhering to software design principles, such as SOLID and DRY. Clean code helps improve code quality, collaboration, and overall software development process.
 
 ### Services
 The services that we utilize to develop and run this application are listed below.
