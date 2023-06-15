@@ -130,7 +130,7 @@
     ```
 
 -   ### Diagnosis Results (GET)
-    Endpoint: `/{userId}/diagnose/{diagnosis_id}`
+    Endpoint: `/{userId}/diagnose/{diagnosisId}`
 
 ## Doctor API
 
