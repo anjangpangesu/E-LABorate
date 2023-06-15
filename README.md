@@ -125,7 +125,6 @@ The services that we utilize to develop and run this application are listed belo
 | Google Cloud Run          | To deploy FastAPI based API and machine learning model |
 | Google Cloud Storage      | Store application images                               |
 | Cloud Firestore           | To store, manage, and access application data.         |
-| TBD                       |                                                        |
 
 ### Application
 TBD
