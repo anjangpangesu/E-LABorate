@@ -105,7 +105,7 @@
 ## Diagnosis API (Using ML Model Base URL)
 
 -   ### Diagnosis Form (POST)
-    Endpoint: `/predict`
+    Endpoint: `/{userId}/predict`
 
     Request Body:
 
@@ -130,7 +130,7 @@
     ```
 
 -   ### Diagnosis Results (GET)
-    Endpoint: `/diagnose/{diagnosis_id}`
+    Endpoint: `/{useraid}/diagnose/{diagnosis_id}`
 
 ## Doctor API
 
