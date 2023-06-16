@@ -24,7 +24,7 @@ We designed a cloud architecture that will be used as a reference for developing
 We use two programming languages to develop the backend of the e-LABorate application.
 |            Name           |        Implementation of      |                      Documentation                       |
 |---------------------------|------------------------------ |----------------------------------------------------------|
-| JavaScript (Node.js)      | Create All API, ex: User API< | https://developer.mozilla.org/en-US/docs/Web/JavaScript  |
+| JavaScript (Node.js)      | Create All API, ex: User API  | https://developer.mozilla.org/en-US/docs/Web/JavaScript  |
 |                                                          || https://nodejs.org/en/docs                               |
 | Python                    | Create Diagnosis API          | https://docs.python.org/3.9/                             |
 
