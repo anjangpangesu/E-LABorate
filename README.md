@@ -136,4 +136,4 @@ The services that we utilize to develop and run this application are listed belo
 | Cloud Firestore           | To store, manage, and access application data.         |
 
 ### Application
-TBD
+https://github.com/anjangpangesu/E-LABorate/releases/download/v1.0.0/e_laborate.apk
