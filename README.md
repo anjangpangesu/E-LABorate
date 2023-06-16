@@ -16,19 +16,19 @@ Here is the list of members of the C23-PS270 team.
 | Vinsensius Adrian Wijaya  | A168DKX4387 | Mobile Development | https://www.linkedin.com/in/xm21/                      |
 
 ### Languages
-We use two programming languages to develop the backend of the e-LABorate application.
+The following is programming language that we used to develop the e-LABorate mobile application.
 |            Name           |        Implementation of      |             Documentation               |
 |---------------------------|------------------------------ |-----------------------------------------|
 | Kotlin                    | Mobile app development        | https://kotlinlang.org/docs/home.html   |
 
 ### Tools
-We use multiple tools in the development of the e-LABorate application.
+We use multiple tools in the mobile development of the e-LABorate application.
 |            Name           |                           Implementation of                          |                  Link                  |
 |---------------------------|----------------------------------------------------------------------|----------------------------------------|
 | Android Studio            | Integrated Development Environment (IDE) for Android app development | https://developer.android.com/studio   |
 
 ### Libraries
-Here are a brief overview of some libraries in the backend development of the e-LABorate application. 
+Here are a brief overview of some libraries in the mobile development of the e-LABorate application. 
 
     Data Store:
     -   Save Session User: Used to save user data and share it across different activities or components in the application. It helps in maintaining user session information and providing easy access to user-related data. 
