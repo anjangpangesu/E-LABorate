@@ -20,21 +20,12 @@ We use two programming languages to develop the backend of the e-LABorate applic
 |            Name           |        Implementation of      |             Documentation               |
 |---------------------------|------------------------------ |-----------------------------------------|
 | Kotlin                    | Mobile app development        | https://kotlinlang.org/docs/home.html   |
-|                           |                               |                                         |
 
 ### Tools
 We use multiple tools in the development of the e-LABorate application.
 |            Name           |                           Implementation of                          |                  Link                  |
 |---------------------------|----------------------------------------------------------------------|----------------------------------------|
 | Android Studio            | Integrated Development Environment (IDE) for Android app development | https://developer.android.com/studio   |
-|                           |                                                                      |                                        |
-
-### Frameworks
-We also use a couple of frameworks that help in the development stage.
-|            Name           |                       Implementation of                     |              Documentation             |
-|---------------------------|-------------------------------------------------------------|----------------------------------------|
-| Express.js                | We use Express.js for backend and API development           | https://expressjs.com/en/5x/api.html   |
-|                           |                                                             |                                        |
 
 ### Libraries
 Here are a brief overview of some libraries in the backend development of the e-LABorate application. 
@@ -44,7 +35,7 @@ Here are a brief overview of some libraries in the backend development of the e-
     
     Live Data & View Model:
     -   LiveData: Used to hold and observe data that can be observed for changes. It's typically used in combination with ViewModel to provide reactive and lifecycle-aware data updates to the UI components.
-     -   ViewModel: Used to manage and store UI-related data. It holds the data required by the UI components and survives configuration changes, such as screen rotations. ViewModels provide a separation between the UI and data handling logic.
+    -   ViewModel: Used to manage and store UI-related data. It holds the data required by the UI components and survives configuration changes, such as screen rotations. ViewModels provide a separation between the UI and data handling logic.
 
     Retrofit2 & Okhttp3:
     -   Retrofit2: A popular library used for making network requests and handling API interactions. It simplifies the process of sending HTTP requests, serializing/deserializing data, and processing API responses.
