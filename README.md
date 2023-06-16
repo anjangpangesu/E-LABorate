@@ -17,10 +17,11 @@ Here is the list of members of the C23-PS270 team.
 
 ### Languages
 We use two programming languages to develop the backend of the e-LABorate application.
-|            Name           |        Implementation of      |         Documentation        |
-|---------------------------|------------------------------ |------------------------------|
-| Node.js                   | Create All API, ex: Diagnosis | https://nodejs.org/en/docs   |
-| Python                    | Create Diagnosis API          | https://docs.python.org/3.9/ |
+|            Name           |        Implementation of      |                      Documentation                       |
+|---------------------------|------------------------------ |----------------------------------------------------------|
+| JavaScript (Node.js)      | Create All API, ex: User API< | https://developer.mozilla.org/en-US/docs/Web/JavaScript  |
+|                                                          || https://nodejs.org/en/docs                               |
+| Python                    | Create Diagnosis API          | https://docs.python.org/3.9/                             |
 
 ### Tools
 We use multiple tools in the development of the e-LABorate application.
