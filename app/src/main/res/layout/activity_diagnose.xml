@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.main.diagnose.DiagnoseActivity">
+
+    <ImageView
+        android:id="@+id/arrow"
+        android:layout_width="32dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/button"
+        android:src="@drawable/baseline_arrow_back_24"
+        tools:ignore="RedundantDescriptionCheck" />
+
+    <TextView
+        android:id="@+id/tv_diagnosis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/diagnosis"
+        android:layout_marginTop="35dp"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:textSize="25sp"
+        android:gravity="center_horizontal"/>
+
+    <TextView
+        android:id="@+id/tv_description_diagnosis"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:fontFamily="@font/poppins_regular"
+        android:gravity="center_horizontal"
+        android:text="@string/description_diagnosis"
+        tools:ignore="TextSizeCheck" />
+
+    <ScrollView
+        android:id="@+id/content_diagnosis"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/age" />
+
+                <EditText
+                    android:id="@+id/inputage"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/light_yellow"
+                    android:gravity="center"
+                    android:hint="Input your Age"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:minHeight="48dp"
+                    android:textColorHint="#795548"
+                    tools:ignore="HardcodedText" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/years" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/sex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="@+id/age"
+                app:layout_constraintTop_toBottomOf="@+id/age">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/sex" />
+
+                <EditText
+                    android:id="@+id/inputsex"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/light_yellow"
+                    android:gravity="center"
+                    android:hint="0 or 1"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:minHeight="48dp"
+                    android:textColorHint="#795548"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/gender" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/rbc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sex">
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/red_blood_cell_count"
+                    tools:ignore="TextSizeCheck" />
+
+                <EditText
+                    android:id="@+id/inputrbc"
+                    android:layout_width="60dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="75dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="20dp"
+                    android:height="40dp"
+                    android:background="@color/light_yellow"
+                    android:gravity="center"
+                    android:hint="RBC"
+                    android:importantForAutofill="no"
+                    android:inputType="numberDecimal"
+                    android:textColorHint="#795548"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/unit_of_rbc"
+                    tools:ignore="TextSizeCheck" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/hgb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rbc">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/hemoglobin_hgb"
+                    tools:ignore="TextSizeCheck" />
+
+                <EditText
+                    android:id="@+id/inputhgb"
+                    android:layout_width="60dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="95dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="20dp"
+                    android:height="40dp"
+                    android:gravity="center"
+                    android:background="@color/light_yellow"
+                    android:hint="HGB"
+                    android:importantForAutofill="no"
+                    android:inputType="numberDecimal"
+                    android:textColorHint="#795548"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/unit_of_hgb" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/hct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hgb">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/hematocrit_hct"
+                    tools:ignore="TextSizeCheck" />
+
+                <EditText
+                    android:id="@+id/inputhct"
+                    android:layout_width="60dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="95dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="20dp"
+                    android:height="40dp"
+                    android:gravity="center"
+                    android:background="@color/light_yellow"
+                    android:hint="HCT"
+                    android:importantForAutofill="no"
+                    android:inputType="numberDecimal"
+                    android:textColorHint="#795548"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/percent" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/mcv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hct">
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/mean_corpuscular_volume_mcv"
+                    tools:ignore="TextSizeCheck" />
+
+                <EditText
+                    android:id="@+id/inputmcv"
+                    android:layout_width="60dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="74dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="20dp"
+                    android:height="40dp"
+                    android:background="@color/light_yellow"
+                    android:hint="MCV"
+                    android:gravity="center"
+                    android:importantForAutofill="no"
+                    android:inputType="numberDecimal"
+                    android:textColorHint="#795548"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:layout_width="23dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/unit_of_mcv" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/mch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mcv">
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/mean_corpuscular_hemoglobin_mch"
+                    tools:ignore="TextSizeCheck" />
+
+                <EditText
+                    android:id="@+id/inputmch"
+                    android:layout_width="60dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="55dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="20dp"
+                    android:height="40dp"
+                    android:background="@color/light_yellow"
+                    android:gravity="center"
+                    android:hint="MCH"
+                    android:importantForAutofill="no"
+                    android:inputType="numberDecimal"
+                    android:textColorHint="#795548"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/unit_of_mch" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/mchc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mch">
+
+                <TextView
+                    android:layout_width="160dp"
+                    android:layout_height="70dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/mean_corpuscular_hemoglobin_concetration_mchc"
+                    tools:ignore="TextSizeCheck" />
+
+                <EditText
+                    android:id="@+id/inputmchc"
+                    android:layout_width="60dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="37dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="20dp"
+                    android:height="30dp"
+                    android:background="@color/light_yellow"
+                    android:gravity="center"
+                    android:hint="MCHC"
+                    android:importantForAutofill="no"
+                    android:inputType="numberDecimal"
+                    android:textColorHint="#795548"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/unit_of_mchc" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/rdw_cv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mchc">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/red_cell_distribution_width_rdw_cv"
+                    tools:ignore="TextSizeCheck" />
+
+                <EditText
+                    android:id="@+id/inputrdcv"
+                    android:layout_width="60dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="47dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="20dp"
+                    android:height="40dp"
+                    android:background="@color/light_yellow"
+                    android:gravity="center"
+                    android:hint="RDW-CV"
+                    android:importantForAutofill="no"
+                    android:inputType="numberDecimal"
+                    android:textColorHint="#795548"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/percent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/wbc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rdw_cv">
+
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/white_blood_cell_count_wbc"
+                    tools:ignore="TextSizeCheck" />
+
+                <EditText
+                    android:id="@+id/inputwbc"
+                    android:layout_width="60dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="20dp"
+                    android:height="40dp"
+                    android:background="@color/light_yellow"
+                    android:gravity="center"
+                    android:hint="WBC"
+                    android:importantForAutofill="no"
+                    android:inputType="numberDecimal"
+                    android:textColorHint="#795548"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/unit_of_wbc"
+                    tools:ignore="TextSizeCheck" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/neu_gra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/wbc">
+
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="65dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/neutrophil_granulocytes_neu_gra_polys_segs_pmns"
+                    tools:ignore="TextSizeCheck" />
+
+                <EditText
+                    android:id="@+id/inputneugra"
+                    android:layout_width="60dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="20dp"
+                    android:height="40dp"
+                    android:background="@color/light_yellow"
+                    android:gravity="center"
+                    android:hint="Neu"
+                    android:importantForAutofill="no"
+                    android:inputType="numberDecimal"
+                    android:textColorHint="#795548"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/percent" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/lymphs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/neu_gra">
+
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/lymphocytes_lym_lymphs"
+                    android:textColor="#546E7A" />
+
+                <EditText
+                    android:id="@+id/inputlymphs"
+                    android:layout_width="60dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="20dp"
+                    android:height="40dp"
+                    android:background="@color/light_yellow"
+                    android:gravity="center"
+                    android:hint="LYM"
+                    android:importantForAutofill="no"
+                    android:inputType="numberDecimal"
+                    android:textColorHint="#795548"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/percent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/monocytes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lymphs">
+
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/monocytes_mo"
+                    tools:ignore="TextSizeCheck" />
+
+                <EditText
+                    android:id="@+id/inputmo"
+                    android:layout_width="60dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="20dp"
+                    android:height="40dp"
+                    android:background="@color/light_yellow"
+                    android:gravity="center"
+                    android:hint="MO"
+                    android:importantForAutofill="no"
+                    android:inputType="numberDecimal"
+                    android:textColorHint="#795548"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/percent" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/eos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/monocytes">
+
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/eosinophils_eos"
+                    tools:ignore="TextSizeCheck" />
+
+                <EditText
+                    android:id="@+id/inputeos"
+                    android:layout_width="60dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="20dp"
+                    android:height="40dp"
+                    android:background="@color/light_yellow"
+                    android:gravity="center"
+                    android:hint="EOS"
+                    android:importantForAutofill="no"
+                    android:inputType="numberDecimal"
+                    android:textColorHint="#795548"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/percent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/basophils"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/eos">
+
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/basophils_ba_basos" />
+
+                <EditText
+                    android:id="@+id/inputbasophils"
+                    android:layout_width="60dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="20dp"
+                    android:height="40dp"
+                    android:background="@color/light_yellow"
+                    android:gravity="center"
+                    android:hint="Basophils"
+                    android:importantForAutofill="no"
+                    android:inputType="numberDecimal"
+                    android:textColorHint="#795548"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/percent" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/interpretationButton"
+                android:layout_width="353dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/button"
+                android:text="@string/interpretation"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/basophils"
+                app:layout_constraintVertical_bias="0.183"
+                tools:ignore="DuplicateSpeakableTextCheck,VisualLintButtonSize" />
+
+            <ProgressBar
+                android:id="@+id/progressBar6"
+                style="@style/progressBar"
+                android:layout_gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.86"
+                tools:visibility="visible" />
+
+            <LinearLayout
+                android:id="@+id/item_edit"
+                android:layout_width="match_parent"
+                android:layout_height="403dp"
+                android:background="@drawable/button"
+                android:orientation="vertical"
+                android:padding="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="MissingConstraints,UseCompoundDrawables"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/iv_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="40dp"
+                    android:contentDescription="@string/img_user"
+                    android:src="@drawable/item_register"
+                    tools:ignore="ImageContrastCheck" />
+
+                <TextView
+                    android:id="@+id/error"
+                    android:layout_width="378dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="60dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textAlignment="center"
+                    android:textColor="?android:textColorPrimary"
+                    android:textSize="20sp"
+                    tools:ignore="TextSizeCheck"
+                    tools:text="@string/successDiagnose" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</LinearLayout>

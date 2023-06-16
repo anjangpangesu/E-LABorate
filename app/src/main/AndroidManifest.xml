@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-feature android:name="android.hardware.camera" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32"
+        />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18"
+        />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ELaborate"
+        tools:targetApi="31"
+        >
+        <activity
+            android:name=".ui.splashscreen.SplashScreenActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.main.profile.edit.EditProfileActivity"
+            android:exported="false"
+            />
+        <activity
+            android:name=".ui.main.docter.DoctorActivity"
+            android:exported="false"
+            />
+        <activity
+            android:name=".ui.login.forget.ForgetPasswordActivity"
+            android:exported="false"
+            />
+        <activity
+            android:name=".ui.login.editpassword.EditPasswordActivity"
+            android:exported="false"
+            />
+        <activity
+            android:name=".ui.main.diagnose.DiagnoseActivity"
+            android:exported="false"
+            />
+        <activity
+            android:name=".ui.main.result.ResultActivity"
+            android:exported="false"
+            />
+        <activity
+            android:name=".ui.register.PrivacyPolicy"
+            android:exported="false"
+            />
+        <activity
+            android:name=".ui.register.TermCondition"
+            android:exported="false"
+            />
+        <activity
+            android:name=".ui.underdevelop.UnderDevelopmentActivity"
+            android:exported="false"
+            />
+        <activity
+            android:name=".ui.register.RegisterActivity"
+            android:exported="false"
+            />
+        <activity
+            android:name=".ui.welcome.WelcomeActivity"
+            android:exported="false"
+            />
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:exported="false"
+            />
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:exported="false"/>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.efrivahmi.elaborate"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"
+                />
+        </provider>
+    </application>
+
+</manifest>

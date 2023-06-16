@@ -1,0 +1,28 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.ELaborate" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">#FCB208</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+
+        <item name="colorSecondary">@color/yellow</item>
+        <item name="colorSecondaryVariant">@color/dark_orange</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+    </style>
+    <style name="Theme.ELaborate" parent="Base.Theme.ELaborate" />
+    <style name="progressBar" parent="@style/Theme.AppCompat">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="Input"> name="inputText" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"></style>
+    <style name="CustomBottomNavigationIndicator" parent="Widget.MaterialComponents.BottomNavigationView">
+        <!-- Definisikan atribut-atribut khusus yang ingin Anda gunakan -->
+        <item name="backgroundTint">@color/yellow</item>
+        <item name="android:state_checkable">true</item>
+    </style>
+
+</resources>

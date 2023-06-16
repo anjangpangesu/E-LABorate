@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.home.HomeFragment"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/home_hand"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:orientation="vertical"
+            android:background="@drawable/home"
+            tools:ignore="MissingConstraints"
+            android:gravity="top"
+
+            >
+
+            <TextView
+                android:id="@+id/tv_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:layout_marginTop="80dp"
+                android:layout_marginStart="15dp"
+                android:textSize="28sp"
+                android:text="@string/hello"
+                tools:text="Hi, Anjang"/>
+
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="24sp"
+                android:text="@string/how_is_your_day"/>
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/content_home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+
+                <TextView
+                    android:id="@+id/tv_diagnosis"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="28dp"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:text="Diagnosis"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/row_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="@id/tv_diagnosis"
+                    app:layout_constraintTop_toBottomOf="@id/tv_diagnosis">
+
+                    <ImageView
+                        android:id="@+id/iv_diagnose"
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="25dp"
+                        android:contentDescription="@string/diagnosis"
+                        android:src="@drawable/diagnosis" />
+
+                    <ImageView
+                        android:id="@+id/iv_result"
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/result"
+                        android:src="@drawable/result" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_recommend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:text="Rekomendasi"
+                    android:textSize="16sp"
+
+                    app:layout_constraintStart_toStartOf="@id/row_one"
+                    app:layout_constraintTop_toBottomOf="@id/row_one" />
+
+                <LinearLayout
+                    android:id="@+id/row_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="@id/tv_recommend"
+                    app:layout_constraintTop_toBottomOf="@id/tv_recommend"
+                    >
+
+                    <ImageView
+                        android:id="@+id/iv_medicine"
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="25dp"
+                        android:src="@drawable/medicine"
+                        />
+
+                    <ImageView
+                        android:id="@+id/iv_workout"
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/workout"
+                        />
+                </LinearLayout>
+
+
+                <ImageView
+                    android:id="@+id/iv_doctor"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="20dp"
+                    android:src="@drawable/doctor"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/row_two"
+                    app:layout_constraintTop_toBottomOf="@+id/row_two" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            app:tabTextColor="@android:color/white"/>
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+</FrameLayout>
