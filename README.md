@@ -15,6 +15,11 @@ Here is the list of members of the C23-PS270 team.
 | Efri Vahmi                | A011DSX2294 | Mobile Development | https://www.linkedin.com/in/efrivahmi/                 |
 | Vinsensius Adrian Wijaya  | A168DKX4387 | Mobile Development | https://www.linkedin.com/in/xm21/                      |
 
+### Cloud Architecture Design
+We designed a cloud architecture that will be used as a reference for developing the backend side of the application.
+
+<img width="695" alt="cloud architecture design" src="https://github.com/anjangpangesu/E-LABorate/assets/71235904/27c9ee6a-fcf4-4828-8a13-e4626f551b8a">
+
 ### Languages
 We use two programming languages to develop the backend of the e-LABorate application.
 |            Name           |        Implementation of      |                      Documentation                       |
