@@ -25,7 +25,8 @@ const validateDoctorInput = (data) => {
     experiences: Joi.array()
       .items(Joi.string()
       .pattern(/^[\w\s().-]+$/u))
-      .required()
+      .required(),
+      imageLink: Joi.string().required(),
   });
 
   return schema.validate(data);
@@ -34,7 +35,7 @@ const validateDoctorInput = (data) => {
 // Route to add a new doctor
 router.post('/:key/add-doctor', async (req, res) => {
   const key = req.params.key;
-  const { name, age, gender, specialty, workplace, experiences } = req.body;
+  const { name, age, gender, specialty, workplace, experiences, imageLink } = req.body;
 
   // Verify private key
   const isPrivateKeyValid = await verifyPrivateKey(key);
@@ -65,7 +66,8 @@ router.post('/:key/add-doctor', async (req, res) => {
       gender: gender,
       specialty: specialty,
       workplace: workplace,
-      experiences: experiences
+      experiences: experiences,
+      imageLink: imageLink
     };
 
     // Save doctor's data to Firestore with generated ID

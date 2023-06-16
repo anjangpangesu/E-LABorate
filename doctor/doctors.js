@@ -86,7 +86,8 @@ router.get('/:id/doctor-list', async (req, res) => {
       gender: doctor.gender,
       specialty: doctor.specialty,
       workplace: doctor.workplace,
-      experiences: doctor.experiences
+      experiences: doctor.experiences,
+      imageLink: doctor.imageLink
     }));
 
     return res.status(200).json({
