@@ -44,6 +44,14 @@ We use multiple tools in the development of the e-LABorate application.
 | Notion                    | To activity management of each member                                       | https://www.notion.so/                 |
 | Jupyter Notebook          | To model the data                                                           | https://jupyter.org/                   |
 
+### Languages
+We use two programming languages to develop the backend of the e-LABorate application.
+|            Name           |        Implementation of      |              Documentation              |
+|---------------------------|------------------------------ |-----------------------------------------|
+| Node.js                   | Create All API, ex: Diagnosis | https://nodejs.org/en/docs              |
+| Python                    | Create Diagnosis API          | https://docs.python.org/3.9/            |
+| Kotlin                    | Mobile app development        | https://kotlinlang.org/docs/home.html   |
+
 ### Frameworks
 We also use a couple of frameworks that help in the development stage.
 |            Name           |                       Implementation of                     |              Documentation             |
